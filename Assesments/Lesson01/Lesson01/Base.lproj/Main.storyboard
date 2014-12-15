@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1187" y="325"/>
+            <point key="canvasLocation" x="1221" y="325"/>
         </scene>
         <!--Info-->
         <scene sceneID="esK-G2-Z2H">
@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcx-Ve-SEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834" y="325"/>
+            <point key="canvasLocation" x="2028" y="325"/>
         </scene>
         <!--Goals-->
         <scene sceneID="XHH-kd-TaY">
@@ -249,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7m-Lj-xvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834" y="1093"/>
+            <point key="canvasLocation" x="1187" y="1063"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uhw-nn-Ja8">
@@ -275,6 +275,6 @@
         <image name="instagram.jpeg" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CoH-rI-9iS"/>
+        <segue reference="2TU-Hh-jBn"/>
     </inferredMetricsTieBreakers>
 </document>
