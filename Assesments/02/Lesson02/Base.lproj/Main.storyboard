@@ -50,14 +50,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placeholder text, replace me!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2W-sh-fBn">
-                                <rect key="frame" x="138" y="249" width="325" height="101"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nothing to see here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2W-sh-fBn">
+                                <rect key="frame" x="138" y="248" width="325" height="101"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="325" id="0YK-KA-gJL"/>
                                     <constraint firstAttribute="height" constant="101" id="SfY-p1-xrP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvU-j8-0it">
@@ -69,6 +68,9 @@
                                 <state key="normal" title="Generate text!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonOne:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aZd-Dc-qX7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -76,7 +78,7 @@
                             <constraint firstAttribute="centerX" secondItem="v2W-sh-fBn" secondAttribute="centerX" id="68c-ag-RaM"/>
                             <constraint firstItem="dvu-Gz-gU3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="26" id="Dag-Q3-O8a"/>
                             <constraint firstAttribute="centerX" secondItem="vvU-j8-0it" secondAttribute="centerX" id="Dpp-YF-b3T"/>
-                            <constraint firstItem="v2W-sh-fBn" firstAttribute="top" secondItem="vvU-j8-0it" secondAttribute="bottom" constant="31" id="P1u-Fz-KUb"/>
+                            <constraint firstItem="v2W-sh-fBn" firstAttribute="top" secondItem="vvU-j8-0it" secondAttribute="bottom" constant="30" id="P1u-Fz-KUb"/>
                             <constraint firstItem="HD3-Of-BAd" firstAttribute="top" secondItem="dvu-Gz-gU3" secondAttribute="bottom" constant="19" id="gLg-zz-mbV"/>
                             <constraint firstAttribute="centerX" secondItem="dvu-Gz-gU3" secondAttribute="centerX" id="nEN-5d-05d"/>
                             <constraint firstItem="vvU-j8-0it" firstAttribute="top" secondItem="HD3-Of-BAd" secondAttribute="bottom" constant="19" id="uE4-OL-hCH"/>
@@ -90,6 +92,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="fieldAge" destination="HD3-Of-BAd" id="U12-gx-pjz"/>
+                        <outlet property="fieldName" destination="dvu-Gz-gU3" id="Vw5-It-UfR"/>
+                        <outlet property="labelOne" destination="v2W-sh-fBn" id="TNk-Tv-LQQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,10 +115,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiz-6d-s2d">
-                                <rect key="frame" x="263" y="157" width="74" height="21"/>
+                                <rect key="frame" x="240" y="157" width="120" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="a5L-Tb-BsM"/>
-                                    <constraint firstAttribute="width" constant="74" id="xjJ-ke-pIy"/>
+                                    <constraint firstAttribute="width" constant="120" id="xjJ-ke-pIy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -135,6 +142,9 @@
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addButton:" destination="DXI-gN-4Tg" eventType="touchUpInside" id="hCM-Zj-S0D"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,6 +164,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="inputNums" destination="dsS-73-FSq" id="M1y-LV-7w5"/>
+                        <outlet property="sumDisplay" destination="qiz-6d-s2d" id="YRm-BI-Imm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFb-9H-Aa6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -180,7 +194,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Should print 'is even' or 'is not even'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-Zz-8RE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Should print 'is even' or 'is not even'" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-Zz-8RE">
                                 <rect key="frame" x="160" y="140" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="JcZ-ys-1oS"/>
@@ -199,6 +213,9 @@
                                 <state key="normal" title="Calculate">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonCalculate:" destination="nKH-F5-XzW" eventType="touchUpInside" id="Vej-66-oFh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,6 +235,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="inputNumber" destination="UJA-B5-7Cz" id="tjb-Lz-aTe"/>
+                        <outlet property="labelPrint" destination="y0y-Zz-8RE" id="ZJr-kc-pAc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bic-8V-fDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -253,8 +274,11 @@
                                 <state key="normal" title="Calculate">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonCalculate:" destination="BPG-Q0-b6p" eventType="touchUpInside" id="uOt-SP-KRh"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Should print the xth fibonacci number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpk-q1-6qc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Should print the xth fibonacci number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpk-q1-6qc">
                                 <rect key="frame" x="155" y="138" width="290" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="aKL-e7-99k"/>
@@ -275,6 +299,10 @@
                             <constraint firstItem="uuM-Ik-raV" firstAttribute="top" secondItem="Hpk-q1-6qc" secondAttribute="bottom" constant="21" id="scm-VI-6lk"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inputFib" destination="Y9T-1j-GS4" id="ekx-9U-LI0"/>
+                        <outlet property="labelFib" destination="Hpk-q1-6qc" id="2xV-HY-bEH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LL4-Hq-ZaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
