@@ -33,9 +33,9 @@ if age >= 21 {
 // for-in loop
 // println of x prints numbers in "console output"
 
-for i in 1...50 {
-   println(i * 7 - 1)
-}
+//for i in 1...50 {
+//   println(i * 7 - 1)
+//}
 
 
 // TODO: Create a constant called number
@@ -52,22 +52,25 @@ if number % 2 == 1 {
 
 // TODO: The first fibonacci number is 0, the second is 1, the third is 1, the fourth is two, the fifth is 3, the sixth is 5, etc. The Xth fibonacci number is the sum of the X-1th fibonacci number and the X-2th fibonacci number. Print the 37th fibonacci number below
 
-var index = 6
+var index = 5
 var a = 0, b = 1, c = 1
-if index == 0 {
+if index == 1 {
     println(a)
-} else if index == 1 {
-    println(b)
 } else if index == 2 {
+    println(b)
+} else if index == 3 {
     println(c)
 } else {
-    for _a in 3...index {
+    for loop in 4...index {
         a = b
         b = c
         c = a + b
     }
     println(c)
 }
+
+// if = is assignment
+// if == is check for T v. F
 
 //for f1 in 0...36 {
 //var f2 = 1, store = 0
@@ -84,5 +87,11 @@ println( "Hello \(name), your name is \(countElements(name)) characters long!")
 
 // TODO: Print the sum of one hundred random numbers. Use rand() to generate random numbers.
 
-
+var sum: Int = 0
+var random: Int = 0
+for counter in 1...100 {
+    random = Int(rand())
+    sum = sum + random
+}
+println(sum)
 

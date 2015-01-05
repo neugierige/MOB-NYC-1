@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,11 +15,63 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVe-jd-Nxr">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YAE-ya-1Ux"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click me!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPC-6P-0tl">
+                                <rect key="frame" x="264" y="323" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gks-u8-NlZ">
+                                <rect key="frame" x="241" y="247" width="119" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="zk6-cL-vrj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b3P-lg-5Ml">
+                                <rect key="frame" x="240" y="352" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="0im-0l-CO0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Gks-u8-NlZ" secondAttribute="centerX" id="H8Q-l2-QGU"/>
+                            <constraint firstAttribute="centerX" secondItem="HPC-6P-0tl" secondAttribute="centerX" id="PT0-oq-5jo"/>
+                            <constraint firstAttribute="centerY" secondItem="MVe-jd-Nxr" secondAttribute="centerY" id="TgR-1D-WS3"/>
+                            <constraint firstAttribute="centerX" secondItem="b3P-lg-5Ml" secondAttribute="centerX" id="awd-qR-D1Y"/>
+                            <constraint firstItem="HPC-6P-0tl" firstAttribute="top" secondItem="MVe-jd-Nxr" secondAttribute="bottom" constant="8" id="eSl-mQ-dCS"/>
+                            <constraint firstAttribute="centerX" secondItem="MVe-jd-Nxr" secondAttribute="centerX" id="gNb-pg-Lw4"/>
+                            <constraint firstItem="Gks-u8-NlZ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="227" id="vK2-NK-lWQ"/>
+                            <constraint firstItem="b3P-lg-5Ml" firstAttribute="top" secondItem="HPC-6P-0tl" secondAttribute="bottom" constant="12" id="wLp-WA-qd4"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fxZ-jm-fpq" appends="YES" id="vVn-z3-2gg"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="HPC-6P-0tl" id="pSW-3r-KfS"/>
+                        <outlet property="textField" destination="Gks-u8-NlZ" id="1N9-Pk-JEs"/>
+                        <outlet property="textFieldTwo" destination="b3P-lg-5Ml" id="swr-uK-JJo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="fxZ-jm-fpq"/>
             </objects>
         </scene>
     </scenes>
