@@ -12,6 +12,7 @@
 		5D06C68219D8CFFE0082F2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D06C68019D8CFFE0082F2DE /* Main.storyboard */; };
 		5D06C68419D8CFFE0082F2DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D06C68319D8CFFE0082F2DE /* Images.xcassets */; };
 		5D06C69319D8CFFE0082F2DE /* Lesson01Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06C69219D8CFFE0082F2DE /* Lesson01Tests.swift */; };
+		F96F85191A5B62C10097BD21 /* IMG_2972.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F96F85181A5B62C10097BD21 /* IMG_2972.jpg */; };
 		F9F703991A38E8A500556411 /* instagram.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F9F703981A38E8A500556411 /* instagram.jpeg */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		5D06C68C19D8CFFE0082F2DE /* Lesson01Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lesson01Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D06C69119D8CFFE0082F2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D06C69219D8CFFE0082F2DE /* Lesson01Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson01Tests.swift; sourceTree = "<group>"; };
+		F96F85181A5B62C10097BD21 /* IMG_2972.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2972.jpg; sourceTree = "<group>"; };
 		F9F703981A38E8A500556411 /* instagram.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = instagram.jpeg; path = ../../../../Desktop/instagram.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		5D06C67A19D8CFFE0082F2DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F96F85181A5B62C10097BD21 /* IMG_2972.jpg */,
 				F9F703981A38E8A500556411 /* instagram.jpeg */,
 				5D06C67B19D8CFFE0082F2DE /* Info.plist */,
 			);
@@ -195,6 +198,7 @@
 				5D06C68219D8CFFE0082F2DE /* Main.storyboard in Resources */,
 				5D06C68419D8CFFE0082F2DE /* Images.xcassets in Resources */,
 				F9F703991A38E8A500556411 /* instagram.jpeg in Resources */,
+				F96F85191A5B62C10097BD21 /* IMG_2972.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
