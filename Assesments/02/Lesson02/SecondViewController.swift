@@ -33,3 +33,7 @@ class SecondViewController: UIViewController {
     
 }
 
+// @IBAction func addButton(sender: AnyObject) {
+//        if let var addNumber: Int = input.Nums.text.toInt() {
+//            numericalSum += addNumber
+//            sumDisplay.text = "\(numbericalSum)"
