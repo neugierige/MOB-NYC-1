@@ -28,7 +28,9 @@ class FourthViewController: UIViewController {
         var inputNumber: Int = 0
         func fibonacciNumberAtIndex (inputNumber: Int) -> Int {
             var n1 = 0, n2 = 1, n3 = 1
-            if inputNumber == 1 {
+            if inputNumber <= 0 {
+                indexOfFibonacciNumber = -1
+            } else if inputNumber == 1 {
                 indexOfFibonacciNumber = n1
             } else if inputNumber == 2 {
                 indexOfFibonacciNumber = n2
