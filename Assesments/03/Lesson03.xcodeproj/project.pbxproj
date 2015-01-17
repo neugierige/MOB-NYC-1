@@ -14,6 +14,9 @@
 		5DCED99F19D8DC9B00DE1DC2 /* Lesson03Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCED99E19D8DC9B00DE1DC2 /* Lesson03Tests.swift */; };
 		5DCED9A919D8DF0800DE1DC2 /* ArrayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCED9A819D8DF0800DE1DC2 /* ArrayTableViewController.swift */; };
 		5DCED9AB19D8DF4E00DE1DC2 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCED9AA19D8DF4E00DE1DC2 /* Animal.swift */; };
+		F927BADD1A6AC9440040AA27 /* DismissViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927BADC1A6AC9440040AA27 /* DismissViewController.swift */; };
+		F927BADF1A6ACDDD0040AA27 /* AnimalSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927BADE1A6ACDDD0040AA27 /* AnimalSubclass.swift */; };
+		F9F0D4221A6AD6AB009E802B /* IMG_2972.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9F0D4211A6AD6AB009E802B /* IMG_2972.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		5DCED99E19D8DC9B00DE1DC2 /* Lesson03Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson03Tests.swift; sourceTree = "<group>"; };
 		5DCED9A819D8DF0800DE1DC2 /* ArrayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTableViewController.swift; sourceTree = "<group>"; };
 		5DCED9AA19D8DF4E00DE1DC2 /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		F927BADC1A6AC9440040AA27 /* DismissViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissViewController.swift; sourceTree = "<group>"; };
+		F927BADE1A6ACDDD0040AA27 /* AnimalSubclass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalSubclass.swift; sourceTree = "<group>"; };
+		F9F0D4211A6AD6AB009E802B /* IMG_2972.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_2972.jpg; path = ../../../../Desktop/IMG_2972.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,8 @@
 				5DCED98819D8DC9B00DE1DC2 /* AppDelegate.swift */,
 				5DCED98A19D8DC9B00DE1DC2 /* ViewController.swift */,
 				5DCED98C19D8DC9B00DE1DC2 /* Main.storyboard */,
+				F927BADE1A6ACDDD0040AA27 /* AnimalSubclass.swift */,
+				F927BADC1A6AC9440040AA27 /* DismissViewController.swift */,
 				5DCED98F19D8DC9B00DE1DC2 /* Images.xcassets */,
 				5DCED98619D8DC9B00DE1DC2 /* Supporting Files */,
 			);
@@ -93,6 +101,7 @@
 		5DCED98619D8DC9B00DE1DC2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9F0D4211A6AD6AB009E802B /* IMG_2972.jpg */,
 				5DCED98719D8DC9B00DE1DC2 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -195,6 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F0D4221A6AD6AB009E802B /* IMG_2972.jpg in Resources */,
 				5DCED98E19D8DC9B00DE1DC2 /* Main.storyboard in Resources */,
 				5DCED99019D8DC9B00DE1DC2 /* Images.xcassets in Resources */,
 			);
@@ -215,9 +225,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DCED9A919D8DF0800DE1DC2 /* ArrayTableViewController.swift in Sources */,
+				F927BADF1A6ACDDD0040AA27 /* AnimalSubclass.swift in Sources */,
 				5DCED9AB19D8DF4E00DE1DC2 /* Animal.swift in Sources */,
 				5DCED98B19D8DC9B00DE1DC2 /* ViewController.swift in Sources */,
 				5DCED98919D8DC9B00DE1DC2 /* AppDelegate.swift in Sources */,
+				F927BADD1A6AC9440040AA27 /* DismissViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +413,7 @@
 				5DCED9A419D8DC9B00DE1DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DCED9A519D8DC9B00DE1DC2 /* Build configuration list for PBXNativeTarget "Lesson03Tests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +422,7 @@
 				5DCED9A719D8DC9B00DE1DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

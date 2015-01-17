@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G0q-Oc-BQG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G0q-Oc-BQG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -32,9 +32,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-Di-GNm">
-                                <rect key="frame" x="154" y="187" width="293.5" height="154"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-Di-GNm">
+                                <rect key="frame" x="154" y="187" width="294" height="154"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="293.5" id="pEs-UT-NKI"/>
                                     <constraint firstAttribute="height" constant="154" id="z5Q-zy-Nta"/>
@@ -55,6 +56,9 @@ It needs to have an image view and a dismiss button that dismisses the modal. Do
                                 <state key="normal" title="Display Table View">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapTableView" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vFY-AC-CxR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -67,12 +71,60 @@ It needs to have an image view and a dismiss button that dismisses the modal. Do
                     </view>
                     <navigationItem key="navigationItem" id="hzY-Hy-RMA"/>
                     <connections>
+                        <outlet property="label" destination="NMl-Di-GNm" id="cKj-0K-Zj3"/>
                         <segue destination="tH5-nV-9zA" kind="show" identifier="show" id="O1F-Kb-DN0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="HUx-fv-Sat">
+                    <connections>
+                        <segue destination="cAN-eP-b6B" kind="presentation" id="xau-NQ-DB7"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="282.75" y="407"/>
+        </scene>
+        <!--Dismiss View Controller-->
+        <scene sceneID="Xgq-Q3-LlN">
+            <objects>
+                <viewController storyboardIdentifier="DismissViewController" id="cAN-eP-b6B" customClass="DismissViewController" customModule="Lesson03" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Io-kX-uOh"/>
+                        <viewControllerLayoutGuide type="bottom" id="cqd-qH-2YW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QKc-pe-yXk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_2972.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="inm-TS-6wj">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="P3U-2v-sbo"/>
+                                    <constraint firstAttribute="height" constant="200" id="pPG-DS-w90"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RpI-rq-RNZ">
+                                <rect key="frame" x="273" y="416" width="54" height="30"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTouchDismiss:" destination="cAN-eP-b6B" eventType="touchUpInside" id="zEf-hv-XoQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RpI-rq-RNZ" firstAttribute="top" secondItem="inm-TS-6wj" secondAttribute="bottom" constant="16" id="1PU-du-kui"/>
+                            <constraint firstAttribute="centerX" secondItem="inm-TS-6wj" secondAttribute="centerX" id="bbC-oU-gkj"/>
+                            <constraint firstAttribute="centerY" secondItem="inm-TS-6wj" secondAttribute="centerY" id="nXz-Og-Uvh"/>
+                            <constraint firstAttribute="centerX" secondItem="RpI-rq-RNZ" secondAttribute="centerX" id="o6w-tI-l3Z"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pw5-XC-WyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="282" y="1185"/>
         </scene>
         <!--Array Table View Controller-->
         <scene sceneID="hS5-QX-ITe">
@@ -93,4 +145,7 @@ It needs to have an image view and a dismiss button that dismisses the modal. Do
             <point key="canvasLocation" x="969" y="407"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IMG_2972.jpg" width="1125" height="1125"/>
+    </resources>
 </document>
