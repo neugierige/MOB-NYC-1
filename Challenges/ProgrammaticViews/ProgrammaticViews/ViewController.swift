@@ -5,6 +5,14 @@
 //  Created by trvslhlt on 1/7/15.
 //  Copyright (c) 2015 travis holt. All rights reserved.
 //
+//Goals
+//    =====
+//    
+//    - round the button's corners
+//- make the button respond to taps
+//- change the button's background color
+//- move the button by changing it's constraints
+//- animate the button's color and position changes
 
 import UIKit
 
@@ -45,6 +53,8 @@ class ViewController: UIViewController {
     self.view.addConstraints([widthConstraint, heightConstraint, leftConstraint, topConstraint])
     
     widget.backgroundColor = UIColor.greenColor()
+    widget.layer.cornerRadius = width / 8
+    
   }
   
 }

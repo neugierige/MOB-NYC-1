@@ -32,8 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-Di-GNm">
-                                <rect key="frame" x="154" y="187" width="294" height="154"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-Di-GNm">
+                                <rect key="frame" x="153" y="187" width="294" height="154"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -46,6 +46,9 @@ It needs to have an image view and a dismiss button that dismisses the modal. Do
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4aG-rt-aFo" appends="YES" id="TAz-0j-Jns"/>
+                                </connections>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AG3-bY-Vru">
                                 <rect key="frame" x="236" y="382" width="128" height="30"/>
@@ -76,9 +79,10 @@ It needs to have an image view and a dismiss button that dismisses the modal. Do
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="HUx-fv-Sat">
+                <swipeGestureRecognizer direction="right" id="4aG-rt-aFo">
                     <connections>
-                        <segue destination="cAN-eP-b6B" kind="presentation" id="xau-NQ-DB7"/>
+                        <action selector="swipe:" destination="vXZ-lx-hvc" id="1FO-ia-Ouv"/>
+                        <segue destination="cAN-eP-b6B" kind="presentation" id="j5t-cK-s9b"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
