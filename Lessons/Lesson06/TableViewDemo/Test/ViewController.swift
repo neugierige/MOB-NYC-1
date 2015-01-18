@@ -27,5 +27,9 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         cell.textLabel?.text = teachers[indexPath.row]
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("details", sender: nil)
+    }
 }
 
