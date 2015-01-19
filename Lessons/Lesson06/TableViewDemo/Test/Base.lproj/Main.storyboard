@@ -27,7 +27,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="5mE-JQ-5GG" kind="push" identifier="details" id="J1H-GG-Uqs"/>
+                                    <segue destination="5mE-JQ-5GG" kind="show" identifier="details" id="c9f-sm-CGg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

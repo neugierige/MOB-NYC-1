@@ -29,7 +29,7 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("details", sender: nil)
+//        performSegueWithIdentifier("details", sender: nil)
     }
 }
 
