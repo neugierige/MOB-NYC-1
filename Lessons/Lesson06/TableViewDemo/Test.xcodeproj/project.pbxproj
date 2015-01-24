@@ -77,9 +77,9 @@
 		5D9431361A670CD40098E007 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				5D9431391A670CD40098E007 /* AppDelegate.swift */,
-				5D94313B1A670CD40098E007 /* ViewController.swift */,
 				5D94313D1A670CD40098E007 /* Main.storyboard */,
+				5D94313B1A670CD40098E007 /* ViewController.swift */,
+				5D9431391A670CD40098E007 /* AppDelegate.swift */,
 				5D9431401A670CD40098E007 /* Images.xcassets */,
 				5D9431421A670CD40098E007 /* LaunchScreen.xib */,
 				5D9431371A670CD40098E007 /* Supporting Files */,
@@ -405,6 +405,7 @@
 				5D9431551A670CD40098E007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D9431561A670CD40098E007 /* Build configuration list for PBXNativeTarget "TestTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				5D9431581A670CD40098E007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

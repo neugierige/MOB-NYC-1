@@ -9,7 +9,10 @@
 import UIKit
 
 class ViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
-
+// only one of these things is a class - "UITableViewController"
+// other two are "protocols" - do not define behavior - grouping of functions and variables that some class has to have
+// protocols = shorthand for "my class a certain set of methods"
+    
     let teachers = ["Rudd", "Travis", "Sean"]
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -29,7 +32,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        performSegueWithIdentifier("details", sender: nil)
     }
 }
 
