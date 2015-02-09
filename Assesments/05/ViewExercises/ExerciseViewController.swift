@@ -46,6 +46,9 @@ class ExerciseViewController: UIViewController {
                 )],
             animated: false
         )
+        
+        var toolbarFrame: FirstViewController?
+        
     }
     
     func didTapFlip() {
