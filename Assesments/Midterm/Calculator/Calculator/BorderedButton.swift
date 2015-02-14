@@ -10,12 +10,28 @@ import UIKit
 
 class BorderedButton: UIButton {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    override init() {
+        super.init()
+        let innerView = UIView()
+        self.addSubview(innerView)
+        innerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let borderSize: CGFloat = 1.0
+        innerView.layer.borderColor = UIColor.whiteColor().CGColor
+        innerView.layer.borderWidth = borderSize
+        
+        self.addConstraint(NSLayoutConstraint(item: innerView, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: innerView, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: innerView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: innerView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0))
     }
-    */
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 }

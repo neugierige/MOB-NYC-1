@@ -19,7 +19,7 @@ class CalculatorClass: UIViewController {
     //converts string to int/float
     //prompts for another input with default of 0
     //stores subsequent input 
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
