@@ -103,7 +103,7 @@ class ViewController: UIViewController {
             buttonsAll.alpha = 0.5
             buttonsAll.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             buttonsAll.userInteractionEnabled = true
-            buttonsAll.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            buttonsAll.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
             
             ///////////
             //       //
@@ -180,26 +180,43 @@ class ViewController: UIViewController {
             self.view.addConstraint(NSLayoutConstraint(item: fourthColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[17], attribute: .Right, multiplier: 1.0, constant: 0.0))
             fourthColumn.backgroundColor = UIColor(red: 250/255.0, green: 138/255.0, blue: 52/255.0, alpha: 1.0)
         }
+    
+    
+//        func clearPressed(button: BorderedButton) {
+//            if let clearTitle = button.titleLabel?.text {
+//                if clearTitle == "C" {
+//                    button.setTitle("AC", forState: UIControlState.Normal)
+//                } else {
+//                    calculate.clearPressed(button)
+//                }
+//            }
+//        }
+        
+//        // change LABEL on CLEAR BUTTON
+//        func changeClear() {
+//            clearButton.currentTitle == "C"
+//        }
+        
+        
+        // "BUTTON PRESSED"
+        
+        func buttonPressed(button: BorderedButton) {
+            if let buttonTitle = button.currentTitle {
+                switch buttonTitle {
+                case "AC": calculate.clearPressed(button)
+                case "=": calculate.evaluate()
+                case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+":
+                    calculate.appendDigits(button)
+                    // changeClear()
+                case "±", "%": calculate.operateUnary(button)
+                default: break
+                }
+            }
+        }
         
     }
     
-    
-    // "BUTTON PRESSED"
-    
-    func buttonPressed(button: BorderedButton) {
-        if let buttonTitle = button.currentTitle {
-            switch buttonTitle {
-            case "AC": calculate.clearPressed(button)
-            case "=": calculate.evaluate()
-            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+": calculate.appendDigits(button)
-            case "±", "%": calculate.operateUnary(button)
-            default: break
-            }
-        }
-    }
-    
 }
-
 
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()

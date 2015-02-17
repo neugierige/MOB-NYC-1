@@ -88,19 +88,15 @@ class CalculatorClass {
     func clearPressed(sender: BorderedButton) {
         resultDisplay = "0"
         
-        if arrayOfNumbers.isEmpty == false { //if the arrayOfNumbers is NOT empty
-            arrayOfNumbers.removeLast()
-            sender.setTitle("AC", forState: UIControlState.Normal)
-        } else {
-            sender.setTitle("AC", forState: UIControlState.Normal)
-        }
-        
         if sender.currentTitle == "AC" {
             equationString = ""
             resultDisplay = "0"
             arrayOfNumbers = []
             arrayOfOperations = []
+        } else if sender.currentTitle == "C" {
+            resultDisplay = "0"
         }
+        
     }
     
     
