@@ -12,46 +12,69 @@ class Brains {
     
     private enum doMath {
         case Numbers(Double)
-        case UniaryOperation(String, Double -> Double)
+        case UnaryOperation(String, Double -> Double)
         case BinaryOperation(String, (Double, Double) -> Double)
     }
     
     private var arrayOfCharacters = [doMath]()
     
-    private var knownOperations = [String:doMath]() //DICTIONARY of OPERATIONS
+    private var knownOperations = [String: doMath]() //DICTIONARY of OPERATIONS
     
     init() {
         knownOperations["+"] = doMath.BinaryOperation("+") { $0 + $1 }
         knownOperations["-"] = doMath.BinaryOperation("-") { $1 - $0 }
         knownOperations["×"] = doMath.BinaryOperation("×") { $0 * $1 }
         knownOperations["÷"] = doMath.BinaryOperation("÷") { $1 / $0 }
-        knownOperations["%"] = doMath.UniaryOperation("%") { $0 * 0.01 }
-        knownOperations["±"] = doMath.UniaryOperation("±") { $0 * -1 }
+        knownOperations["%"] = doMath.UnaryOperation("%") { $0 * 0.01 }
+        knownOperations["±"] = doMath.UnaryOperation("±") { $0 * -1 }
     }
     
-    let brain = Brains() //initializing Brains
+//    let brain = Brains() //initializing Brains
     
-    private func evaluate(ops: [doMath]) -> (result: Double?, remainingOperations: [doMath]) { //returns a TUPLE
+    private func evaluate(operations: [doMath]) -> (result: Double?, remainingOperations: [doMath]) { //returns a TUPLE
         
-        if !ops.isEmpty {
-            var remainingOps = ops
-            let op = remainingOps.removeLast()
+        if !operations.isEmpty {
+            var remainingOperations = operations
+            let op = remainingOperations.removeLast()
+            switch op {
+            case .Numbers(let number):
+                return (number, remainingOperations)
+                
+            case .UnaryOperation(_, let operation):
+                let numberEvaluation = evaluate(remainingOperations)
+                if let number = numberEvaluation.result {
+                    return (operation(number), numberEvaluation.remainingOperations)
+                }
+            case .BinaryOperation(_, let operation):
+                let number1Evaluation = evaluate(remainingOperations)
+            if let number1st = number1Evaluation.result {
+                let number2Evaluation = evaluate(number1Evaluation.remainingOperations)
+                if let number2nd = number2Evaluation.result {
+                    return (operation(number1st, number2nd), number2Evaluation.remainingOperations)
+                }
+                }
+            }
             
         }
-        return (nil, ops)
+        return (nil, operations)
     }
     
     func evaluate() -> Double? {
+        let (result, remainingOperations) = evaluate(arrayOfCharacters)
+        println("current result is: \(result)")
+        return result
     }
     
-    func pushNumbers(number: Double) {
+    func pushNumbers(number: Double) -> Double? {
         arrayOfCharacters.append(doMath.Numbers(number))
+        return evaluate()
     }
     
-    func performCalculations(symbol: String) {
+    func performCalculations(symbol: String) -> Double? {
         if let calculation = knownOperations[symbol] {
             arrayOfCharacters.append(calculation)
         }
+        return evaluate()
     }
     
 }

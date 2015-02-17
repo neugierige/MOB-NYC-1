@@ -13,7 +13,19 @@ class ViewController: UIViewController {
     @IBOutlet var equationDisplay: UILabel!
     @IBOutlet var resultDisplay: UILabel!
     
+    var currentNumberValue: Double {
+        get {
+            return NSNumberFormatter().numberFromString(resultDisplay.text!)!.doubleValue
+        }
+        set {
+            resultDisplay.text = "\(newValue)"
+            appending = false
+        }
+    }
+    
     var appending: Bool = false
+    
+    var aBrain = Brains()
     
     @IBAction func appendDigit(sender: UIButton) {
         let digitEntered = sender.currentTitle!
@@ -27,38 +39,48 @@ class ViewController: UIViewController {
 
     var arrayOfNumbers: [Double] = []
     
-    var currentNumberValue: Double {
-        get {
-            return NSNumberFormatter().numberFromString(resultDisplay.text!)!.doubleValue
+       @IBAction func calculate(sender: UIButton) {
+        if appending {
+            enter()
         }
-        set {
-            resultDisplay.text = "\(newValue)"
-            appending = false
+
+//        appending = false
+//        println("value of last number entered = \(currentNumberValue)")
+//        arrayOfNumbers.append(currentNumberValue) // --> now done via "pushNumbers" in "Brains" class
+//        println("\(arrayOfNumbers)")
+
+        if let operationSymbol = sender.currentTitle {
+//            switch operationSymbol {
+//            case "±":
+//                currentNumberValue = arrayOfNumbers.removeLast() * -1
+//            case "%":
+//                currentNumberValue = arrayOfNumbers.removeLast() * 0.01
+//            case "÷":
+//                performCalculation({$1 / $0})
+//            case "×":
+//                performCalculation({$0 * $1})
+//            case "-":
+//                performCalculation({$1 - $0})
+//            case "+":
+//                performCalculation({$0 + $1})
+//            default: break
+//            }
+            
+            if let result = aBrain.performCalculations(operationSymbol) {
+                currentNumberValue = result
+            } else {
+                currentNumberValue = 0 //should really be "nil"
+            }
+            
         }
     }
-
-    @IBAction func calculate(sender: UIButton) {
-
+    
+       @IBAction func enter() {
         appending = false
-        println("value of last number entered = \(currentNumberValue)")
-        arrayOfNumbers.append(currentNumberValue)
-        println("\(arrayOfNumbers)")
-        
-        let operationSymbol = sender.currentTitle!
-            switch operationSymbol {
-            case "±":
-                currentNumberValue = arrayOfNumbers.removeLast() * -1
-            case "%":
-                currentNumberValue = arrayOfNumbers.removeLast() * 0.01
-            case "÷":
-                performCalculation({$1 / $0})
-            case "×":
-                performCalculation({$0 * $1})
-            case "-":
-                performCalculation({$1 - $0})
-            case "+":
-                performCalculation({$0 + $1})
-            default: break
+        if let result = aBrain.pushNumbers(currentNumberValue) {
+            currentNumberValue = result
+        } else {
+            currentNumberValue = 0 //could be "nil" or return error message
         }
     }
     
@@ -68,7 +90,7 @@ class ViewController: UIViewController {
         }
     }
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
