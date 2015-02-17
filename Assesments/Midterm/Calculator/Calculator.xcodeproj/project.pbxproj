@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F94361541A8C208F009376FA /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94361531A8C208F009376FA /* CalculatorButton.swift */; };
 		F94ADEB31A8C3DD9007C6519 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ADEB21A8C3DD9007C6519 /* BorderedButton.swift */; };
 		F9F053E51A89905500FCBE3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F053E41A89905500FCBE3D /* AppDelegate.swift */; };
 		F9F053E71A89905500FCBE3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F053E61A89905500FCBE3D /* ViewController.swift */; };
@@ -29,7 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F94361531A8C208F009376FA /* CalculatorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
 		F94ADEB21A8C3DD9007C6519 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		F9F053DF1A89905500FCBE3D /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F053E31A89905500FCBE3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,11 +81,10 @@
 		F9F053E11A89905500FCBE3D /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				F9F053E81A89905500FCBE3D /* Main.storyboard */,
-				F94361531A8C208F009376FA /* CalculatorButton.swift */,
 				F9F054061A89958F00FCBE3D /* CalculatorClass.swift */,
 				F9F053E61A89905500FCBE3D /* ViewController.swift */,
 				F94ADEB21A8C3DD9007C6519 /* BorderedButton.swift */,
+				F9F053E81A89905500FCBE3D /* Main.storyboard */,
 				F9F053E41A89905500FCBE3D /* AppDelegate.swift */,
 				F9F053EB1A89905500FCBE3D /* Images.xcassets */,
 				F9F053ED1A89905500FCBE3D /* LaunchScreen.xib */,
@@ -225,7 +222,6 @@
 				F9F053E71A89905500FCBE3D /* ViewController.swift in Sources */,
 				F9F053E51A89905500FCBE3D /* AppDelegate.swift in Sources */,
 				F9F054071A89958F00FCBE3D /* CalculatorClass.swift in Sources */,
-				F94361541A8C208F009376FA /* CalculatorButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

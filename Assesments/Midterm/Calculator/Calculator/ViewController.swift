@@ -10,108 +10,127 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let calculate = CalculatorClass()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        //DEFINE SIZE OF A SINGLE KEY UNIT
+        
+        // DEFINE SIZE OF A SINGLE KEY UNIT
+        
         var keySize = UIView()
         view.addSubview(keySize)
         keySize.setTranslatesAutoresizingMaskIntoConstraints(false)
-        let borderWidth: CGFloat = 1.0
         view.addConstraint(NSLayoutConstraint(
-            item: keySize, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 0.25, constant: -borderWidth))
+            item: keySize, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 0.25, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(
-            item: keySize, attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 1.0, constant: -borderWidth))
-        keySize.layer.borderWidth = borderWidth
+            item: keySize, attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 1.0, constant: 0.0))
         
         
-        //DEFINING CONTAINER FOR ALL KEYS
+        // DEFINING CONTAINER FOR ALL KEYS
+        
         var keypadContainer = UIView()
         self.view.addSubview(keypadContainer)
         keypadContainer.setTranslatesAutoresizingMaskIntoConstraints(false)
-        keypadContainer.backgroundColor = UIColor.whiteColor()
-        keypadContainer.layer.borderWidth = 1.0
-        keypadContainer.layer.borderColor = UIColor.whiteColor().CGColor
+        keypadContainer.layer.borderWidth = 2.0
+        keypadContainer.layer.borderColor = UIColor.blackColor().CGColor
         self.view.addConstraint(NSLayoutConstraint(
-            item: keypadContainer, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 1.5))
+            item: keypadContainer, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(
-            item: keypadContainer, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: -1.5))
+            item: keypadContainer, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(
-            item: keypadContainer, attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 5.0, constant: 10.0))
+            item: keypadContainer, attribute: .Width, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 4.0, constant: 2.0))
         self.view.addConstraint(NSLayoutConstraint(
-            item: keypadContainer, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: -1.5))
-        
+            item: keypadContainer, attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Height, multiplier: 5.0, constant: 2.0))
 
-        //DEFINING LABEL FOR DISPLAYING THE RESULT
-        var displayLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width,
-            height: 205))
-        println(keypadContainer.frame.height)
+        
+        // DEFINING LABEL FOR DISPLAYING THE RESULT
+        
+        var displayLabel = UILabel()
         self.view.addSubview(displayLabel)
+        displayLabel.text = calculate.resultDisplay
+        displayLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         displayLabel.backgroundColor = UIColor.blackColor()
         displayLabel.textColor = UIColor.whiteColor()
-        displayLabel.text = "0"
         displayLabel.textAlignment = NSTextAlignment.Right
+
+        ///////////
+        //       //
+        //  STOP //
+        //       //
+        ///////////
+        
+        //  QUESTION: how to make the text alignment offset (from the right edge) by a specific amount? i.e. 5.0
+        
+        displayLabel.font = displayLabel.font.fontWithSize(30)
+        self.view.addConstraint(NSLayoutConstraint(
+            item: displayLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(
+            item: displayLabel, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(
+            item: displayLabel, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(
+            item: displayLabel, attribute: .Bottom, relatedBy: .Equal, toItem: keypadContainer, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(
+            item: displayLabel, attribute: NSLayoutAttribute.RightMargin, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 0.0, constant: 5.0))
+        
+        println(keypadContainer.frame.height)
+        
+        var equationLabel = UILabel()
+        self.view.addSubview(equationLabel)
+        equationLabel.text = calculate.equationString
+
+        
+        //SET UP FOR BUTTONS
         
         var buttonLabels: [String] = [
             "AC", "±", "%", "÷",  // 0,  1,   2, 3
             "7", "8", "9", "×",   // 4,  5,   6, 7
             "4", "5", "6", "−",   // 8,  9,  10, 11
             "1", "2", "3", "+",   // 12, 13, 14, 15
-            "0", ".", "=",] ?? [] // 16,     17, 18
+            "0", ".", "="]        // 16,     17, 18
         
         var arrayOfButtons:[UIButton] = []
         
         for (index, label) in enumerate(buttonLabels) {
             var buttonsAll = BorderedButton()
             self.view.addSubview(buttonsAll)
-            buttonsAll.backgroundColor = UIColor.grayColor()
-            buttonsAll.setTranslatesAutoresizingMaskIntoConstraints(false)
-            buttonsAll.layer.borderColor = UIColor.whiteColor().CGColor
-            buttonsAll.layer.borderWidth = borderWidth
-            buttonsAll.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             buttonsAll.setTitle(buttonLabels[index], forState: UIControlState.Normal)
             arrayOfButtons.append(buttonsAll)
-        }
-        
-        for (index, buttonsAll) in enumerate(arrayOfButtons) {
-            if index != 16 {
-                    self.view.addConstraint(NSLayoutConstraint(
-                        item: buttonsAll,
-                        attribute: .Width,
-                        relatedBy: .Equal,
-                        toItem: keySize,
-                        attribute: .Width,
-                        multiplier: 1.0,
-                        constant: 0.0))
-                    self.view.addConstraint(NSLayoutConstraint(
-                        item: buttonsAll,
-                        attribute: .Height,
-                        relatedBy: .Equal,
-                        toItem: keySize,
-                        attribute: .Width,
-                        multiplier: 1.0,
-                        constant: 0.0))
-            }
-        }
-        
-        for (index, buttonsAll) in enumerate(arrayOfButtons) {
-            if index != 0 {
-                if index != 1 {
-                    if index != 2 {
-                        if index != 3 {
-                            if index != 7 {
-                                if index != 11 {
-                                    buttonsAll.addTarget(self, action: "appendDigit", forControlEvents: UIControlEvents.TouchUpInside)
-                }
-            }
-        }
-        
-        func appendDigit() {
+            buttonsAll.setTranslatesAutoresizingMaskIntoConstraints(false)
+            buttonsAll.backgroundColor = UIColor(red: 180/255.0, green: 180/255.0, blue: 180/255.0, alpha: 2.0)
+            buttonsAll.alpha = 0.5
+            buttonsAll.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            buttonsAll.userInteractionEnabled = true
+            buttonsAll.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            
+            ///////////
+            //       //
+            //  STOP //
+            //       //
+            ///////////
+            
+            //  addTarget is NOT WORKING = WHY?????
 
         }
         
-        //ZERO - unique size
+        var clearButton = arrayOfButtons[0]
+        var clearLabel = clearButton.titleLabel
+        
+        for (index, buttonsAll) in enumerate(arrayOfButtons) {
+            if index != 16 {
+                self.view.addConstraint(NSLayoutConstraint(
+                    item: buttonsAll, attribute: .Width, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 1.0, constant: 0.0))
+                self.view.addConstraint(NSLayoutConstraint(
+                    item: buttonsAll, attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 1.0, constant: 0.0))
+            }
+        }
+        
+        
+        // AUTOLAYOUT for ALL KEYS
+        
+        // ZERO - unique size
         self.view.addConstraint(NSLayoutConstraint(item: arrayOfButtons[16], attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Height, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: arrayOfButtons[16], attribute: .Width, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 2.0, constant: 0.0))
         
@@ -138,6 +157,7 @@ class ViewController: UIViewController {
         //5th ROW OF BUTTONS
         for fifthRow in [arrayOfButtons[0], arrayOfButtons[1], arrayOfButtons[2], arrayOfButtons[3]] {
             self.view.addConstraint(NSLayoutConstraint(item: fifthRow, attribute: .Bottom, relatedBy: .Equal, toItem: arrayOfButtons[4], attribute: .Top, multiplier: 1.0, constant: 0.0))
+            fifthRow.backgroundColor = UIColor(red: 160/255.0, green: 160/255.0, blue: 160/255.0, alpha: 1.0)
         }
         
         //1st COLUMN OF BUTTONS
@@ -158,13 +178,30 @@ class ViewController: UIViewController {
         //4th COLUMN OF BUTTONS
         for fourthColumn in [arrayOfButtons[3], arrayOfButtons[7], arrayOfButtons[11], arrayOfButtons[15], arrayOfButtons[18]] {
             self.view.addConstraint(NSLayoutConstraint(item: fourthColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[17], attribute: .Right, multiplier: 1.0, constant: 0.0))
+            fourthColumn.backgroundColor = UIColor(red: 250/255.0, green: 138/255.0, blue: 52/255.0, alpha: 1.0)
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    // "BUTTON PRESSED"
+    
+    func buttonPressed(button: BorderedButton) {
+        if let buttonTitle = button.currentTitle {
+            switch buttonTitle {
+            case "AC": calculate.clearPressed(button)
+            case "=": calculate.evaluate()
+            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+": calculate.appendDigits(button)
+            case "±", "%": calculate.operateUnary(button)
+            default: break
+            }
+        }
     }
+    
 }
 
+
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
