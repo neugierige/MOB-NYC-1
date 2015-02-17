@@ -79,9 +79,9 @@
 		5D6592B21A70807A00649D3D /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				5D6592B91A70807A00649D3D /* Main.storyboard */,
 				5D6592B51A70807A00649D3D /* AppDelegate.swift */,
 				5D6592B71A70807A00649D3D /* ModalViewController.swift */,
-				5D6592B91A70807A00649D3D /* Main.storyboard */,
 				5D6592BC1A70807A00649D3D /* Images.xcassets */,
 				5D6592BE1A70807A00649D3D /* LaunchScreen.xib */,
 				5D6592B31A70807A00649D3D /* Supporting Files */,
@@ -409,6 +409,7 @@
 				5D6592D11A70807A00649D3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D6592D21A70807A00649D3D /* Build configuration list for PBXNativeTarget "TodoTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				5D6592D41A70807A00649D3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

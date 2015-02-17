@@ -29,15 +29,17 @@ class TableViewController: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseID, forIndexPath: indexPath) as UITableViewCell
-    cell.textLabel.text = cities[indexPath.row]
+    cell.textLabel?.text = cities[indexPath.row]
     return cell
   }
   
+  // DELETING CELLS
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == UITableViewCellEditingStyle.Delete {
       cities.removeAtIndex(indexPath.row)
       tableView.reloadData()
     }
+    
   }
   
   // MARK: IBActions
@@ -64,7 +66,15 @@ class TableViewController: UITableViewController {
   }
   
   @IBAction func sortTapped(sender: AnyObject) {
-    cities = sorted(cities, <)
+    cities = sorted(cities, >)
+//    cities = sorted(cities)
+//    cities = sorted(cities) {
+//        return $0 < $1
+//    }
+//    cities = sorted(cities) { c1, c2 in
+//        return c1 < c2
+//    }
+    
     tableView.reloadData()
   }
 }

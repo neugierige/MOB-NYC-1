@@ -10,7 +10,15 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    var todos = ["groceries", "homework", "walk dog"]
+    var todos: [[String: String]] = [
+        [
+            "taskName": "task",
+            "status": "status",
+            "dueDate": "deadline",
+        ]
+    ]
+
+    @IBOutlet var todoAddedLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +42,13 @@ class MainTableViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         self.tableView.reloadData()
+        var notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserverForName("todo Added", object: nil, queue: nil) { (notification: NSNotification!) -> Void in
+            println("it worked")
+            UIView.animateWithDuration(5, animations: {
+                self.todoAddedLabel.alpha = 1.0
+            })
+        }
     }
     
     // MARK: - Table view data source
@@ -49,10 +64,39 @@ class MainTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel?.text = todos[indexPath.row]
+        if let todoName = todos[indexPath.row]["taskName"] {
+            cell.textLabel?.text = todoName
+        }
+        
+        if let todoStatus = todos[indexPath.row]["status"] {
+            if let todoDate = todos[indexPath.row]["dueDate"] {
+                cell.detailTextLabel?.text = todoStatus + " " + todoDate
+            }
+        }
+        
         return cell
     }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            todos.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
 
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        // need to be able to get a cell
+        var cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.backgroundColor = UIColor.redColor()
+        
+    }
+    
+
+    
+
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

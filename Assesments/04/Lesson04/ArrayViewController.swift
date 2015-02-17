@@ -23,7 +23,11 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let input = textField.text
         stringArray.append(input)
         tableView.reloadData() //calls the 3 functions below (part of UITableViewDataSource methods)
+        textField.text = ""
+        self.view.endEditing(true)
+
         return true
+        
     }
     
     
@@ -43,6 +47,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
+        // takes away keyboard
     }
  
         

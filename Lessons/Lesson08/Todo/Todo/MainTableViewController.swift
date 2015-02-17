@@ -9,8 +9,12 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-
-    var todos = ["groceries", "homework", "walk dog"]
+    
+    var todoDictionaries = [
+        ["taskName": "homework"],
+        ["taskStatus": "in progress"],
+        ["taskDate": "1/26"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,16 +47,34 @@ class MainTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todos.count
+        return todoDictionaries.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel?.text = todos[indexPath.row]
+        if let todoName = todoDictionaries[indexPath.row]["taskName"] {
+            cell.textLabel?.text = todoName
+        }
+        
+        if let todoStatus = todoDictionaries[indexPath.row]["taskStatus"] {
+            if let todoDate = todoDictionaries[indexPath.row]["taskDate"] {
+                cell.detailTextLabel?.text = todoStatus + " | " + todoDate
+            }
+        }
+        
+        
+        
+//        let eachToDo = todoDictionaries[indexPath.row]
+//        
+//        if let todo = todoDictionaries[eachToDo] {
+//            var cellDisplay = "\(eachToDo): status \(todo.0), due \(todo.1)"
+//            cell.textLabel?.text = cellDisplay
+//        }
+        
         return cell
     }
-
+}
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -98,4 +120,3 @@ class MainTableViewController: UITableViewController {
     }
     */
 
-}

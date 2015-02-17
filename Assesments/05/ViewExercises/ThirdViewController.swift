@@ -14,7 +14,31 @@ class ThirdViewController: ExerciseViewController {
         super.viewDidLoad()
         self.exerciseDescription.text = "View 3"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "next")
-        autoLayout()
+//        autoLayout()
+        
+        var ul = UIView()
+        var ur = UIView()
+        var ll = UIView()
+        var lr = UIView()
+        
+        for view in [ul, ur, ll, lr] {
+            view.backgroundColor = UIColor.blueColor()
+            view.setTranslatesAutoresizingMaskIntoConstraints(false)
+            self.exerciseView.addSubview(view)
+            
+            self.exerciseView.addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 20))
+            self.exerciseView.addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 20))
+        }
+        
+        self.exerciseView.addConstraint(NSLayoutConstraint(
+            item: ul,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: self.topLayoutGuide,
+            attribute: .Bottom,
+            multiplier: 1.0,
+            constant: 0.0))
+        
     }
     
     
