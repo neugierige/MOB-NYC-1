@@ -76,7 +76,7 @@ class CalculatorClass {
                 
                 //  how to get the title from arrayOfButtons[0]??
 
-                ______.setTitle("C", forState: UIControlState.Normal)
+                //______.setTitle("C", forState: UIControlState.Normal)
                 
             }
         }

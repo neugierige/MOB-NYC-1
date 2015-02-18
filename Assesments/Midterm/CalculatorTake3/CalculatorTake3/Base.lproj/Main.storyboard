@@ -276,22 +276,6 @@
                                     <action selector="buttonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fsw-BJ-Evh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z44-4C-HIO">
-                                <rect key="frame" x="157" y="402" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="1zF-sl-5aO"/>
-                                    <constraint firstAttribute="width" constant="60" id="eJH-Cr-csr"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="jg5-vR-b5q"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ybW-KS-h7U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="=">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="evaluate" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ppN-9j-R14"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpf-sd-rWN">
                                 <rect key="frame" x="228" y="192" width="60" height="60"/>
                                 <constraints>
@@ -338,6 +322,22 @@
                                 </state>
                                 <connections>
                                     <action selector="clearPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9i-9c-zWh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z44-4C-HIO">
+                                <rect key="frame" x="157" y="402" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1zF-sl-5aO"/>
+                                    <constraint firstAttribute="width" constant="60" id="eJH-Cr-csr"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="jg5-vR-b5q"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ybW-KS-h7U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="=">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="evaluate" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ppN-9j-R14"/>
                                 </connections>
                             </button>
                         </subviews>

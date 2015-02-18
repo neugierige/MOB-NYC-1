@@ -9,14 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
     //LABELS set up
-    @IBOutlet var equationDisplay: UILabel!
     @IBOutlet var resultDisplay: UILabel!
-//    let equation = Array(equationDisplay.text!) //why doesn't this work??
-
+    @IBOutlet var equationDisplay: UILabel! //not working right now...
+    
     
     //BUTTONS set up
     @IBOutlet var clearButton: UIButton!
+    
     
     //get NUMBER from label.text
     var currentNumberValue: Double {
@@ -33,24 +34,26 @@ class ViewController: UIViewController {
     //BOOL for APPENDING
     var appending: Bool = false
     
-    //WHEN ANY BUTTON (EXCEPT = or AC) IS PRESSED
+    
+    //WHEN ANY BUTTON IS PRESSED --> I DON'T KNOW HOW TO MAKE THIS WORK :-(
     @IBAction func buttonPressed(sender: UIButton) {
         
         let character = sender.currentTitle!
-        
-        // I don't know how to make this work
 //        switch character {
 //        case "1", "2", "3", "4", "5", "6", "7", "8", "9", ".": appendDigits()
 //        case "/", "*", "-", "+":
 //            operateBinary()
-////        case "AC": [equationDisplay.text = "0", resultDisplay.text = "0"]
+//        case "AC": [equationDisplay.text = "0", resultDisplay.text = "0"]
 //        case "±", "%": operateUnary()
 //        default: break
 //        }
     }
 
+    
+    //ARRAYS for numbers and operators
     var arrayOfNumbers: [Double] = []
     var arrayOfOperations: [String] = []
+    
     
     //APPENDING DIGITS
     @IBAction func appendDigits(sender: UIButton) {
@@ -59,6 +62,7 @@ class ViewController: UIViewController {
         
         if appending {
             
+            //DECIMAL POINT restrictions
             if character == "." {
                 if let textString = resultDisplay.text {
                     if textString.rangeOfString(".") != nil {
@@ -68,7 +72,7 @@ class ViewController: UIViewController {
                         equationDisplay.text = equationDisplay.text! + character!
                     }
                 }
-            } else {
+            } else { //if character != "."
                 println("no decimals or correct decimals")
                 resultDisplay.text = resultDisplay.text! + character!
                 equationDisplay.text = equationDisplay.text! + character!
@@ -80,6 +84,14 @@ class ViewController: UIViewController {
                 resultDisplay.text = character!
                 appending = true
                 clearButton.setTitle("C", forState: UIControlState.Normal)
+
+//                if arrayOfOperations.last == "*" || arrayOfOperations.last == "/" {
+//                    var product: Double = 0.0
+//                    product = doMath(arrayOfNumbers.last!, num2: currentNumberValue, operation: character!)
+//                    //evaluate()
+//                } else {
+//                }
+                
             }
         }
     }
@@ -87,17 +99,16 @@ class ViewController: UIViewController {
     
     //CLEAR button
     @IBAction func clearPressed() {
-        if arrayOfNumbers.isEmpty == false { //if the array of numbers is NOT empty
+        
+        if clearButton.currentTitle == "C" {
             resultDisplay.text = "0"
             clearButton.setTitle("AC", forState: UIControlState.Normal)
-        } else {
-        }
-        
-        if clearButton.currentTitle == "AC" {
+        } else if clearButton.currentTitle == "AC" {
             equationDisplay.text = ""
             resultDisplay.text = "0"
             arrayOfNumbers = []
             arrayOfOperations = []
+            println("all cleared")
         }
     }
     
@@ -110,11 +121,13 @@ class ViewController: UIViewController {
         if character == "%" {
             currentNumberValue = currentNumberValue * 0.01
             arrayOfNumbers.append(currentNumberValue)
-            equationDisplay.text = equationDisplay.text! + "\(currentNumberValue)"
+            equationDisplay.text = equationDisplay.text! + "\(arrayOfNumbers.last)"
         } else if character == "±" {
+            
+            
             currentNumberValue = currentNumberValue * -1
             arrayOfNumbers.append(currentNumberValue)
-            equationDisplay.text = equationDisplay.text! + "\(currentNumberValue)"
+            equationDisplay.text = equationDisplay.text! + "\(arrayOfNumbers.last)"
         } else {
         }
     }
@@ -124,24 +137,104 @@ class ViewController: UIViewController {
     //BINARY OPERATORS
     @IBAction func operateBinary(sender: UIButton) {
         
+        let character = sender.currentTitle!
+        
         evaluate()
         
-        let character = sender.currentTitle!
-        arrayOfOperations.append(character)
-        println("operator appended: \(arrayOfOperations)")
+        // CHECK if more than 1 OPERATOR was pressed
+        if arrayOfOperations.count < arrayOfNumbers.count {
+            arrayOfOperations.append(character)
+            equationDisplay.text = equationDisplay.text! + character
+            appending = false
+        } else if arrayOfOperations.count > arrayOfNumbers.count { // if count of OPERATORS > NUMBERS
+            arrayOfOperations.removeLast()
+            arrayOfOperations.append(character)
+            equationDisplay.text = equationDisplay.text! + character
+            appending = false
+        }
         
-        equationDisplay.text = equationDisplay.text! + character
-        resultDisplay.text = "0"
-        appending = false
-        
-        //        switch character {
-        //            case "+", "-": evaluate()
-        //            case "*", "/": evaluate() // evaluateFirst(sender)
-        //        default: break
-        //          }
+//        switch character {
+//            case "+", "-": evaluate()
+//            case "*", "/": evaluateFirst()
+//        default: break
+//          }
         
     }
 
+//    func evaluateFirst() {
+//        
+//        evaluate()
+//        
+//        if arrayOfNumbers.count > 2 {
+//            arrayOfNumbers.removeAtIndex(arrayOfNumbers.count-1)
+//            arrayOfNumbers.removeAtIndex(arrayOfNumbers.count-2)
+//            
+//        } else {
+//            
+//        }
+//
+//    }
+
+    
+    
+    @IBAction func evaluate() {
+
+        arrayOfNumbers.append(currentNumberValue)
+        
+        println("arrayOfNumbers: \(arrayOfNumbers)")
+        println("arrayOfOperations: \(arrayOfOperations)")
+        println("equation: \(equationDisplay.text)")
+        
+        
+        // 2nd number is OPTIONAL
+        var num2: Double?
+        if arrayOfNumbers.count >= 2 {
+            num2 = arrayOfNumbers[arrayOfNumbers.count-2]
+        }
+        
+        
+        if arrayOfOperations.isEmpty == false {
+            
+            // CALLS doMath function
+            currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations.last!)
+            
+            // updates ARRAY OF NUMBERS
+            arrayOfNumbers.removeLast()
+            arrayOfNumbers.removeLast()
+                //arrayOfOperations.removeAll(keepCapacity: true)
+            arrayOfNumbers.append(currentNumberValue)
+                //arrayOfNumbers.replaceRange(0...1, with: [currentNumberValue])
+            
+            // updates ARRAY OF OPERATORS
+            arrayOfOperations.removeLast()
+        }
+        
+    }
+    
+    
+    func doMath(num1: Double, num2: Double?, operation: String) -> Double {
+        
+        var result: Double = 0.0
+        let optionalNum2 = num2 ?? num1
+        
+        
+        // COMMENTS are attempts to implement PEMDAS handling
+        switch operation {
+            case "+": result = num1 + optionalNum2
+            //evaluate(num1, num2: optionalNum2, operation: +)
+            case "-": result = optionalNum2 - num1
+            //evaluate(optionalNum2, num2: -num1, operation: +)
+            case "*": result = num1 * optionalNum2
+            //evaluateFirst(num1, num2: optionalNum2, operation: "*")
+            case "/": result = optionalNum2 / num1
+            //evaluateFirst(optionalNum2, num2: 1/num1, operation: "*")
+            default: break
+        }
+        return result
+        
+    }
+
+    
     
 //    @IBAction func evaluateFirst(sender: UIButton) {
 //        if let character = sender.currentTitle {
@@ -153,49 +246,6 @@ class ViewController: UIViewController {
 //        }
 //
 //    }
-    
-    
-    func evaluate() {
-
-        arrayOfNumbers.append(currentNumberValue)
-        
-        var num2: Double?
-        
-        if arrayOfNumbers.count >= 2 {
-            num2 = arrayOfNumbers[arrayOfNumbers.count-2]
-        }
-        
-        if arrayOfOperations.isEmpty == false {
-            currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations.last!)
-            arrayOfNumbers.removeAll(keepCapacity: true)
-            arrayOfOperations.removeAll(keepCapacity: true)
-            arrayOfNumbers.append(currentNumberValue)
-            //arrayOfNumbers.replaceRange(0...1, with: [currentNumberValue])
-            //arrayOfOperations.removeLast()
-        }
-    
-        println("arrayOfNumbers: \(arrayOfNumbers)")
-        println("arrayOfOperations: \(arrayOfOperations)")
-        
-    }
-    
-    
-    func doMath(num1: Double, num2: Double?, operation: String) -> Double {
-        
-        var result: Double = 0.0
-        let optionalNum2 = num2 ?? num1
-        
-        switch operation {
-            case "+": result = num1 + optionalNum2
-            case "-": result = optionalNum2 - num1
-            case "*": result = num1 * optionalNum2
-            case "/": result = optionalNum2 / num1
-            default: break
-        }
-        return result
-        
-    }
-
     
 //        let index = find(arrayOfOperations, "*")
 //
@@ -222,14 +272,7 @@ class ViewController: UIViewController {
 //
 //                }
 //            }
-        
 
-//        if character == "+" {
-//            currentNumberValue = arrayOfNumbers.removeLast() + arrayOfNumbers.removeLast()
-//        }
-//        if character == "-" {
-//            currentNumberValue = { $1 - $0 }
-//        }
     
     
     override func viewDidLoad() {

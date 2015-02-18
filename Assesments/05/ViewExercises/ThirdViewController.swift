@@ -30,18 +30,8 @@ class ThirdViewController: ExerciseViewController {
             self.exerciseView.addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 20))
         }
         
-        self.exerciseView.addConstraint(NSLayoutConstraint(
-            item: ul,
-            attribute: .Top,
-            relatedBy: .Equal,
-            toItem: self.topLayoutGuide,
-            attribute: .Bottom,
-            multiplier: 1.0,
-            constant: 0.0))
-        
+        self.exerciseView.addConstraint(NSLayoutConstraint(item: ul, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
     }
-    
-    
     
     
     func autoLayout() {

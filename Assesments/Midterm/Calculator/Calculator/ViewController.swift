@@ -12,9 +12,8 @@ class ViewController: UIViewController {
 
     let calculate = CalculatorClass()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         
         
         // DEFINE SIZE OF A SINGLE KEY UNIT
@@ -72,8 +71,8 @@ class ViewController: UIViewController {
             item: displayLabel, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(
             item: displayLabel, attribute: .Bottom, relatedBy: .Equal, toItem: keypadContainer, attribute: .Top, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(
-            item: displayLabel, attribute: NSLayoutAttribute.RightMargin, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 0.0, constant: 5.0))
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: displayLabel, attribute: NSLayoutAttribute.RightMargin, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 0.0, constant: 5.0))
         
         println(keypadContainer.frame.height)
         
@@ -99,8 +98,7 @@ class ViewController: UIViewController {
             buttonsAll.setTitle(buttonLabels[index], forState: UIControlState.Normal)
             arrayOfButtons.append(buttonsAll)
             buttonsAll.setTranslatesAutoresizingMaskIntoConstraints(false)
-            buttonsAll.backgroundColor = UIColor(red: 180/255.0, green: 180/255.0, blue: 180/255.0, alpha: 2.0)
-            buttonsAll.alpha = 0.5
+            buttonsAll.backgroundColor = UIColor(red: 180/255.0, green: 180/255.0, blue: 180/255.0, alpha: 1.0)
             buttonsAll.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             buttonsAll.userInteractionEnabled = true
             buttonsAll.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
@@ -114,6 +112,8 @@ class ViewController: UIViewController {
             //  addTarget is NOT WORKING = WHY?????
 
         }
+        
+
         
         var clearButton = arrayOfButtons[0]
         var clearLabel = clearButton.titleLabel
@@ -192,22 +192,23 @@ class ViewController: UIViewController {
 //            }
 //        }
         
-//        // change LABEL on CLEAR BUTTON
-//        func changeClear() {
-//            clearButton.currentTitle == "C"
-//        }
+        // change LABEL on CLEAR BUTTON
+        func changeClear() {
+            clearButton.currentTitle == "C"
+        }
         
         
         // "BUTTON PRESSED"
         
         func buttonPressed(button: BorderedButton) {
+            println("button pressed")
             if let buttonTitle = button.currentTitle {
                 switch buttonTitle {
                 case "AC": calculate.clearPressed(button)
                 case "=": calculate.evaluate()
                 case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+":
                     calculate.appendDigits(button)
-                    // changeClear()
+                    //changeClear()
                 case "±", "%": calculate.operateUnary(button)
                 default: break
                 }
