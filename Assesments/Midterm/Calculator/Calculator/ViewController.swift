@@ -9,8 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     let calculate = CalculatorClass()
+    
+    var clearButton = UIButton()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
@@ -42,7 +44,7 @@ class ViewController: UIViewController {
             item: keypadContainer, attribute: .Width, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 4.0, constant: 2.0))
         self.view.addConstraint(NSLayoutConstraint(
             item: keypadContainer, attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Height, multiplier: 5.0, constant: 2.0))
-
+        
         
         // DEFINING LABEL FOR DISPLAYING THE RESULT
         
@@ -53,14 +55,13 @@ class ViewController: UIViewController {
         displayLabel.backgroundColor = UIColor.blackColor()
         displayLabel.textColor = UIColor.whiteColor()
         displayLabel.textAlignment = NSTextAlignment.Right
-
-        ///////////
-        //       //
-        //  STOP //
-        //       //
-        ///////////
         
-        //  QUESTION: how to make the text alignment offset (from the right edge) by a specific amount? i.e. 5.0
+        ////////////
+        //        //
+        //  STOP  //
+        //        //
+        ////////////
+        //how to make the text alignment offset (from the right edge) by a specific amount? i.e. 5.0
         
         displayLabel.font = displayLabel.font.fontWithSize(30)
         self.view.addConstraint(NSLayoutConstraint(
@@ -71,15 +72,12 @@ class ViewController: UIViewController {
             item: displayLabel, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(
             item: displayLabel, attribute: .Bottom, relatedBy: .Equal, toItem: keypadContainer, attribute: .Top, multiplier: 1.0, constant: 0.0))
-//        self.view.addConstraint(NSLayoutConstraint(
-//            item: displayLabel, attribute: NSLayoutAttribute.RightMargin, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 0.0, constant: 5.0))
-        
-        println(keypadContainer.frame.height)
         
         var equationLabel = UILabel()
         self.view.addSubview(equationLabel)
         equationLabel.text = calculate.equationString
-
+        //layout not set up yet
+        
         
         //SET UP FOR BUTTONS
         
@@ -90,7 +88,7 @@ class ViewController: UIViewController {
             "1", "2", "3", "+",   // 12, 13, 14, 15
             "0", ".", "="]        // 16,     17, 18
         
-        var arrayOfButtons:[UIButton] = []
+        var arrayOfButtons:[BorderedButton] = []
         
         for (index, label) in enumerate(buttonLabels) {
             var buttonsAll = BorderedButton()
@@ -109,14 +107,10 @@ class ViewController: UIViewController {
             //       //
             ///////////
             
-            //  addTarget is NOT WORKING = WHY?????
-
+            //  addTarget is NOT WORKING. WHY?????
         }
         
-
-        
-        var clearButton = arrayOfButtons[0]
-        var clearLabel = clearButton.titleLabel
+        clearButton = arrayOfButtons[0]
         
         for (index, buttonsAll) in enumerate(arrayOfButtons) {
             if index != 16 {
@@ -135,27 +129,27 @@ class ViewController: UIViewController {
         self.view.addConstraint(NSLayoutConstraint(item: arrayOfButtons[16], attribute: .Width, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 2.0, constant: 0.0))
         
         //1st ROW OF BUTTONS
-        for firstRow in [arrayOfButtons[16], arrayOfButtons[17], arrayOfButtons[18]] {
+        for firstRow in arrayOfButtons[16...18] {
             self.view.addConstraint(NSLayoutConstraint(item: firstRow, attribute: .Bottom, relatedBy: .Equal, toItem: keypadContainer, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
         }
         
         //2nd ROW OF BUTTONS
-        for secondRow in [arrayOfButtons[12], arrayOfButtons[13], arrayOfButtons[14], arrayOfButtons[15]] {
+        for secondRow in arrayOfButtons[12...15] {
             self.view.addConstraint(NSLayoutConstraint(item: secondRow, attribute: .Bottom, relatedBy: .Equal, toItem: arrayOfButtons[16], attribute: .Top, multiplier: 1.0, constant: 0.0))
         }
         
         //3rd ROW OF BUTTON
-        for thirdRow in [arrayOfButtons[8], arrayOfButtons[9], arrayOfButtons[10], arrayOfButtons[11]] {
+        for thirdRow in arrayOfButtons[8...11] {
             self.view.addConstraint(NSLayoutConstraint(item: thirdRow, attribute: .Bottom, relatedBy: .Equal, toItem: arrayOfButtons[12], attribute: .Top, multiplier: 1.0, constant: 0.0))
         }
         
         //4th ROW OF BUTTONS
-        for fourthRow in [arrayOfButtons[4], arrayOfButtons[5], arrayOfButtons[6], arrayOfButtons[7]] {
+        for fourthRow in arrayOfButtons[4...7] {
             self.view.addConstraint(NSLayoutConstraint(item: fourthRow, attribute: .Bottom, relatedBy: .Equal, toItem: arrayOfButtons[8], attribute: .Top, multiplier: 1.0, constant: 0.0))
         }
         
         //5th ROW OF BUTTONS
-        for fifthRow in [arrayOfButtons[0], arrayOfButtons[1], arrayOfButtons[2], arrayOfButtons[3]] {
+        for fifthRow in arrayOfButtons[0...3] {
             self.view.addConstraint(NSLayoutConstraint(item: fifthRow, attribute: .Bottom, relatedBy: .Equal, toItem: arrayOfButtons[4], attribute: .Top, multiplier: 1.0, constant: 0.0))
             fifthRow.backgroundColor = UIColor(red: 160/255.0, green: 160/255.0, blue: 160/255.0, alpha: 1.0)
         }
@@ -170,56 +164,41 @@ class ViewController: UIViewController {
             self.view.addConstraint(NSLayoutConstraint(item: secondColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[12], attribute: .Right, multiplier: 1.0, constant: 0.0))
         }
         
+        
         //3rd COLUMN OF BUTTONS
         for thirdColumn in [arrayOfButtons[2], arrayOfButtons[6], arrayOfButtons[10], arrayOfButtons[14], arrayOfButtons[17]] {
             self.view.addConstraint(NSLayoutConstraint(item: thirdColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[16], attribute: .Right, multiplier: 1.0, constant: 0.0))
         }
+
         
         //4th COLUMN OF BUTTONS
         for fourthColumn in [arrayOfButtons[3], arrayOfButtons[7], arrayOfButtons[11], arrayOfButtons[15], arrayOfButtons[18]] {
             self.view.addConstraint(NSLayoutConstraint(item: fourthColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[17], attribute: .Right, multiplier: 1.0, constant: 0.0))
             fourthColumn.backgroundColor = UIColor(red: 250/255.0, green: 138/255.0, blue: 52/255.0, alpha: 1.0)
         }
-    
-    
-//        func clearPressed(button: BorderedButton) {
-//            if let clearTitle = button.titleLabel?.text {
-//                if clearTitle == "C" {
-//                    button.setTitle("AC", forState: UIControlState.Normal)
-//                } else {
-//                    calculate.clearPressed(button)
-//                }
-//            }
-//        }
-        
-        // change LABEL on CLEAR BUTTON
-        func changeClear() {
-            clearButton.currentTitle == "C"
-        }
-        
-        
-        // "BUTTON PRESSED"
-        
-        func buttonPressed(button: BorderedButton) {
-            println("button pressed")
-            if let buttonTitle = button.currentTitle {
-                switch buttonTitle {
-                case "AC": calculate.clearPressed(button)
-                case "=": calculate.evaluate()
-                case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+":
-                    calculate.appendDigits(button)
-                    //changeClear()
-                case "±", "%": calculate.operateUnary(button)
-                default: break
-                }
-            }
-        }
         
     }
     
-}
+    
+    // change LABEL on CLEAR BUTTON
+    func changeClear() {
+        clearButton.currentTitle == "C"
+    }
+    
 
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
+    // "BUTTON PRESSED"
+    func buttonPressed(button: UIButton) {
+        println("button pressed")
+        if let buttonTitle = button.currentTitle {
+            switch buttonTitle {
+            case "AC": calculate.clearPressed(button)
+            case "=": calculate.evaluate()
+            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+":
+                calculate.appendDigits(button)
+            case "±", "%": calculate.operateUnary(button)
+            default: break
+            }
+        }
+    }
+    
+}

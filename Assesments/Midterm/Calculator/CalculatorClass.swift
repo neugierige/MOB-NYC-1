@@ -15,7 +15,7 @@ class CalculatorClass {
     }
     
     //Text from LABELS 
-    var equationString: String?
+    var equationString: String = ""
     var resultDisplay: String? = "0"
     
     
@@ -41,43 +41,45 @@ class CalculatorClass {
     
     
     //APPENDING DIGITS
-    func appendDigits(sender: BorderedButton) {
+    func appendDigits(sender: UIButton) {
         
-        let character = sender.currentTitle
+        if let character = sender.currentTitle {
         
-        if appending {
-            
-            if character == "." {
-                if let textString = resultDisplay {
-                    if textString.rangeOfString(".") != nil {
-                        println("can't add more decimals")
-                    } else {
-                        resultDisplay = textString + character!
-                        equationString = equationString! + character!
+            if appending {
+                
+                println("I'm appending!")
+                
+                //DECIMALS
+                if character == "." {
+                    if let textString = resultDisplay {
+                        if textString.rangeOfString(".") != nil {
+                            println("can't add more decimals")
+                        } else {
+                            resultDisplay = textString + character
+                            equationString = equationString + character
+                        }
                     }
+                } else {
+                    println("no decimals or correct decimals")
+                    resultDisplay = resultDisplay! + character
+                    equationString = equationString + character
                 }
+                
             } else {
-                println("no decimals or correct decimals")
-                resultDisplay = resultDisplay! + character!
-                equationString = equationString! + character!
-            }
-            
-        } else {
-            if character != "0" {
-                equationString = equationString! + character!
-                resultDisplay = character!
-                appending = true
-                
-                ///////////
-                //       //
-                //  STOP //
-                //       //
-                ///////////
-                
-                //  how to get the title from arrayOfButtons[0]??
+                if character != "0" {
+                    equationString = equationString + character
+                    resultDisplay = character
+                    appending = true
+                    
+                    ///////////
+                    //       //
+                    //  STOP //
+                    //       //
+                    ///////////
 
-                //______.setTitle("C", forState: UIControlState.Normal)
-                
+                    //______.setTitle("C", forState: UIControlState.Normal)
+                    
+                }
             }
         }
     }
@@ -85,7 +87,7 @@ class CalculatorClass {
     
     
     //CLEAR button
-    func clearPressed(sender: BorderedButton) {
+    func clearPressed(sender: UIButton) {
         resultDisplay = "0"
         
         if sender.currentTitle == "AC" {
@@ -101,17 +103,17 @@ class CalculatorClass {
     
     
     //UNARY OPERATORS
-    func operateUnary(sender: BorderedButton) {
+    func operateUnary(sender: UIButton) {
         let character = sender.currentTitle
         
         if character == "%" {
             currentNumberValue = currentNumberValue * 0.01
             arrayOfNumbers.append(currentNumberValue)
-            equationString = equationString! + "\(currentNumberValue)"
+            equationString = equationString + "\(currentNumberValue)"
         } else if character == "±" {
             currentNumberValue = currentNumberValue * -1
             arrayOfNumbers.append(currentNumberValue)
-            equationString = equationString! + "\(currentNumberValue)"
+            equationString = equationString + "\(currentNumberValue)"
         } else {
         }
     }
@@ -126,7 +128,7 @@ class CalculatorClass {
         if let character = button.currentTitle {
             arrayOfOperations.append(character)
             println("operator appended: \(arrayOfOperations)")
-            equationString = equationString! + character
+            equationString = equationString + character
             resultDisplay = "0"
             appending = false
             /*switch character {
