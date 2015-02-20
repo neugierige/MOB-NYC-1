@@ -60,9 +60,9 @@ class CalculatorClass {
                         }
                     }
                 } else {
-                    println("no decimals or correct decimals")
                     resultDisplay = resultDisplay! + character
                     equationString = equationString + character
+                    println("resultDisplay: \(resultDisplay)")
                 }
                 
             } else {
@@ -71,14 +71,7 @@ class CalculatorClass {
                     resultDisplay = character
                     appending = true
                     
-                    ///////////
-                    //       //
-                    //  STOP //
-                    //       //
-                    ///////////
 
-                    //______.setTitle("C", forState: UIControlState.Normal)
-                    
                 }
             }
         }
@@ -121,58 +114,121 @@ class CalculatorClass {
     
     
     //BINARY OPERATORS
-    func operateBinary(button: UIButton) {
+    func operateBinary(sender: UIButton) {
+
+        //STOP appending
+        appending = false
         
-        evaluate()
-        
-        if let character = button.currentTitle {
+        //UNWRAPPING optional "character"
+        if let character = sender.currentTitle {
+            
+            //APPEND current operator
             arrayOfOperations.append(character)
-            println("operator appended: \(arrayOfOperations)")
+            println("arrayOfOperations = \(arrayOfOperations)")
             equationString = equationString + character
-            resultDisplay = "0"
-            appending = false
-            /*switch character {
-                case "+", "-": evaluate()
-                case "*", "/": sortArray(button)
-                default: break
-            }*/
+            
+            //APPEND current number
+            arrayOfNumbers.append(currentNumberValue)
+            println("arrayOfNumbers = \(arrayOfNumbers)")
+            
+            //(1A) CHECK if any extraneous operators
+            if arrayOfOperations.count <= arrayOfNumbers.count {
+                
+                //(2A) CHECK if there is only 1 number
+                if arrayOfNumbers.count < 2 {
+                    //if yes, do nothing
+                    
+                    //(2B) CHECK if there are 2 numbers to operate on
+                } else if arrayOfNumbers.count == 2 {
+                    
+                    //(3A) CHECK if character is * OR /
+                    if character == "*" || character == "/" {
+                        var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
+                        
+                        //(4A) CHECK if previous operator is NOT * OR / -> need PEMDAS
+                        if previousOperator != character {
+                            processPEMDAS(sender) // !!!!!!
+                            //(4B) regular evaluate
+                        } else if previousOperator == character {
+                            evaluate(sender) // !!!!!!!
+                        }
+                        //(3B) if not, regular evaluate
+                    } else {
+                        evaluate(sender) // !!!!!!!
+                    }
+                }
+                
+                //(1B) if EXTRA operators,
+            } else if arrayOfOperations.count > arrayOfNumbers.count {
+                
+                //1st REMOVE any extraneous operators
+                arrayOfOperations.removeAtIndex(arrayOfOperations.count-1)
+                    //var equationArray = Array(arrayLiteral: equationString)
+                    //equationArray.removeAtIndex(equationArray.count-1)
+                
+                //THEN regular process
+                operateBinary(sender)
+            }
+        }
+        
+    }
+    
+    func processPEMDAS(sender: UIButton) {
+        
+        if let character = sender.currentTitle {
+            
+            var product = 0.0
+            var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
+            
+            product = doMath(arrayOfNumbers.removeLast(), num2: arrayOfNumbers.removeLast(), operation: character)
+            arrayOfNumbers.append(product)
+            arrayOfOperations.removeAtIndex(arrayOfOperations.count-1)
+            evaluate(sender)
         }
     }
     
-    var orderOfOperations = ["*", "/", "+", "-"]
-    
-    func sortArray(button: UIButton) {
-//         if arrayOfOperations.count >= 2 {
-//
-//              if ["*", "/"] are in front of ["+", "-"] {
-//                  evaluate()
-//              } else {
-//                arrayOfOperations.sorted ({ $0.* > $1.+ })
-//                evaluate()
-//              }
-//
+    func evaluate(sender: UIButton) {
         
-    }
-    
-    func evaluate() {
+        let character = sender.currentTitle
         
-        arrayOfNumbers.append(currentNumberValue)
-        
-        var num2: Double?
-        
-        if arrayOfNumbers.count >= 2 {
-            num2 = arrayOfNumbers[arrayOfNumbers.count-2]
+        if character == "=" {
+            println("current number = \(currentNumberValue)")
+            arrayOfNumbers.append(currentNumberValue)
+            evaluate(sender)
+        } else {
+            
+            println("arrayOfNumbers: \(arrayOfNumbers)")
+            println("arrayOfOperations: \(arrayOfOperations)")
+            println("equation: \(equationString)")
+            
+            
+            // 2nd number is OPTIONAL
+            var num2: Double?
+            if arrayOfNumbers.count >= 2 {
+                num2 = arrayOfNumbers[arrayOfNumbers.count-2]
+            }
+            
+            if arrayOfOperations.isEmpty == false {
+                
+                // CALLS doMath function
+                currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations[arrayOfOperations.count - 1])
+                
+                // updates ARRAY OF NUMBERS
+                arrayOfNumbers.removeLast()
+                if arrayOfNumbers.count >= 2{
+                    arrayOfNumbers.removeLast()
+                }
+                arrayOfNumbers.append(currentNumberValue)
+                //arrayOfNumbers.replaceRange(0...1, with: [currentNumberValue])
+                
+                // updates ARRAY OF OPERATORS
+                arrayOfOperations.removeLast()
+                
+            } else {
+                resultDisplay == resultDisplay
+            }
+            
         }
-        
-        if !arrayOfOperations.isEmpty {
-            currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations.last!)
-            arrayOfNumbers.removeAll(keepCapacity: true)
-            arrayOfOperations.removeAll(keepCapacity: true)
-            arrayOfNumbers.insert(currentNumberValue, atIndex: 0)
-        }
-        
-        println("arrayOfNumbers: \(arrayOfNumbers)")
-        println("arrayOfOperations: \(arrayOfOperations)")
         
     }
     

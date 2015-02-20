@@ -10,11 +10,14 @@ import UIKit
 
 class BorderedButton: UIButton {
 
+    
     override init() {
         super.init()
         let innerView = UIView()
         self.addSubview(innerView)
         innerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        innerView.userInteractionEnabled = false
+    
         let borderSize: CGFloat = 1.0
         innerView.layer.borderColor = UIColor(red: 130/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1.0).CGColor
         innerView.layer.borderWidth = borderSize
@@ -35,21 +38,3 @@ class BorderedButton: UIButton {
     }
 
 }
-
-
-//    if let buttonPressed = sender.currentTitle {
-//        switch buttonPressed {
-//        case "±":
-//            currentNumberValue = arrayOfNumbers.removeLast() * -1
-//        case "%":
-//            currentNumberValue = arrayOfNumbers.removeLast() * 0.01
-//        case "÷":
-//            performCalculation({$1 / $0})
-//        case "×":
-//            performCalculation({$0 * $1})
-//        case "-":
-//            performCalculation({$1 - $0})
-//        case "+":
-//            performCalculation({$0 + $1})
-//        default: break
-//        }

@@ -337,7 +337,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="evaluate" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ppN-9j-R14"/>
+                                    <action selector="evaluate:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JnJ-Tn-DMG"/>
                                 </connections>
                             </button>
                         </subviews>

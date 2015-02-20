@@ -31,6 +31,11 @@ class ViewController: UIViewController {
     }
     
     
+    //ARRAYS for numbers and operators
+    var arrayOfNumbers: [Double] = []
+    var arrayOfOperations: [String] = []
+    
+    
     //BOOL for APPENDING
     var appending: Bool = false
     
@@ -48,11 +53,6 @@ class ViewController: UIViewController {
 //        default: break
 //        }
     }
-
-    
-    //ARRAYS for numbers and operators
-    var arrayOfNumbers: [Double] = []
-    var arrayOfOperations: [String] = []
     
     
     //APPENDING DIGITS
@@ -116,20 +116,19 @@ class ViewController: UIViewController {
     //UNARY OPERATORS
     @IBAction func operateUnary(sender: UIButton) {
         let character = sender.currentTitle
-        arrayOfNumbers.removeLast()
 
         if character == "%" {
             currentNumberValue = currentNumberValue * 0.01
             arrayOfNumbers.append(currentNumberValue)
             equationDisplay.text = equationDisplay.text! + "\(arrayOfNumbers.last)"
         } else if character == "±" {
-            
-            
             currentNumberValue = currentNumberValue * -1
             arrayOfNumbers.append(currentNumberValue)
             equationDisplay.text = equationDisplay.text! + "\(arrayOfNumbers.last)"
-        } else {
         }
+        
+        arrayOfNumbers.removeAtIndex(arrayOfNumbers.count-1)
+        
     }
     
     
@@ -137,78 +136,121 @@ class ViewController: UIViewController {
     //BINARY OPERATORS
     @IBAction func operateBinary(sender: UIButton) {
         
-        let character = sender.currentTitle!
+        //STOP appending
+        appending = false
         
-        evaluate()
-        
-        // CHECK if more than 1 OPERATOR was pressed
-        if arrayOfOperations.count < arrayOfNumbers.count {
+        //UNWRAPPING optional "character"
+        if let character = sender.currentTitle {
+            
+            //APPEND current operator
             arrayOfOperations.append(character)
+            println("arrayOfOperations = \(arrayOfOperations)")
             equationDisplay.text = equationDisplay.text! + character
-            appending = false
-        } else if arrayOfOperations.count > arrayOfNumbers.count { // if count of OPERATORS > NUMBERS
-            arrayOfOperations.removeLast()
-            arrayOfOperations.append(character)
-            equationDisplay.text = equationDisplay.text! + character
-            appending = false
+            
+            //APPEND current number
+            arrayOfNumbers.append(currentNumberValue)
+            println("arrayOfNumbers = \(arrayOfNumbers)")
+            
+            //(1A) CHECK if any extraneous operators
+            if arrayOfOperations.count <= arrayOfNumbers.count {
+                
+                //(2A) CHECK if there is only 1 number
+                if arrayOfNumbers.count < 2 {
+                    //if yes, do nothing
+                    
+                //(2B) CHECK if there are 2 numbers to operate on
+                } else if arrayOfNumbers.count == 2 {
+                    
+                    //(3A) CHECK if character is * OR /
+                    if character == "*" || character == "/" {
+                        var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
+                        
+                        //(4A) CHECK if previous operator is NOT * OR / -> need PEMDAS
+                        if previousOperator != character {
+                            processPEMDAS(sender) // !!!!!!
+                        //(4B) regular evaluate
+                        } else if previousOperator == character {
+                            evaluate(sender) // !!!!!!!
+                        }
+                    //(3B) if not, regular evaluate
+                    } else {
+                        evaluate(sender) // !!!!!!!
+                    }
+                }
+            
+            //(1B) if EXTRA operators,
+            } else if arrayOfOperations.count > arrayOfNumbers.count {
+                
+                //1st REMOVE any extraneous operators
+                arrayOfOperations.removeAtIndex(arrayOfOperations.count-1)
+                var equationArray = Array(arrayLiteral: equationDisplay.text)
+                equationArray.removeAtIndex(equationArray.count-1)
+                
+                //THEN regular process
+                operateBinary(sender)
+                
+            }
         }
+    }
+    
+    
+    func processPEMDAS(sender: UIButton) {
         
-//        switch character {
-//            case "+", "-": evaluate()
-//            case "*", "/": evaluateFirst()
-//        default: break
-//          }
+        if let character = sender.currentTitle {
         
+            var product = 0.0
+            var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
+            
+            product = doMath(arrayOfNumbers.removeLast(), num2: arrayOfNumbers.removeLast(), operation: character)
+            arrayOfNumbers.append(product)
+            arrayOfOperations.removeAtIndex(arrayOfOperations.count-1)
+            evaluate(sender)
+        }
     }
 
-//    func evaluateFirst() {
-//        
-//        evaluate()
-//        
-//        if arrayOfNumbers.count > 2 {
-//            arrayOfNumbers.removeAtIndex(arrayOfNumbers.count-1)
-//            arrayOfNumbers.removeAtIndex(arrayOfNumbers.count-2)
-//            
-//        } else {
-//            
-//        }
-//
-//    }
-
     
-    
-    @IBAction func evaluate() {
-
-        arrayOfNumbers.append(currentNumberValue)
+    @IBAction func evaluate(sender: UIButton) {
         
-        println("arrayOfNumbers: \(arrayOfNumbers)")
-        println("arrayOfOperations: \(arrayOfOperations)")
-        println("equation: \(equationDisplay.text)")
+        let character = sender.currentTitle
         
-        
-        // 2nd number is OPTIONAL
-        var num2: Double?
-        if arrayOfNumbers.count >= 2 {
-            num2 = arrayOfNumbers[arrayOfNumbers.count-2]
-        }
-        
-        
-        if arrayOfOperations.isEmpty == false {
-            
-            // CALLS doMath function
-            currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations.last!)
-            
-            // updates ARRAY OF NUMBERS
-            arrayOfNumbers.removeLast()
-            arrayOfNumbers.removeLast()
-                //arrayOfOperations.removeAll(keepCapacity: true)
+        if character == "=" {
+            println("current number = \(currentNumberValue)")
             arrayOfNumbers.append(currentNumberValue)
-                //arrayOfNumbers.replaceRange(0...1, with: [currentNumberValue])
-            
-            // updates ARRAY OF OPERATORS
-            arrayOfOperations.removeLast()
-        }
+            evaluate(sender)
+        } else {
         
+            println("arrayOfNumbers: \(arrayOfNumbers)")
+            println("arrayOfOperations: \(arrayOfOperations)")
+            println("equation: \(equationDisplay.text)")
+        
+
+            // 2nd number is OPTIONAL
+            var num2: Double?
+            if arrayOfNumbers.count >= 2 {
+                num2 = arrayOfNumbers[arrayOfNumbers.count-2]
+            }
+            
+            if arrayOfOperations.isEmpty == false {
+                
+                // CALLS doMath function
+                currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations[arrayOfOperations.count - 1])
+                
+                // updates ARRAY OF NUMBERS
+                arrayOfNumbers.removeLast()
+                if arrayOfNumbers.count >= 2{
+                    arrayOfNumbers.removeLast()
+                }
+                arrayOfNumbers.append(currentNumberValue)
+                    //arrayOfNumbers.replaceRange(0...1, with: [currentNumberValue])
+                
+                // updates ARRAY OF OPERATORS
+                arrayOfOperations.removeLast()
+                
+            } else {
+                resultDisplay.text == resultDisplay.text
+            }
+        
+        }
     }
     
     
@@ -217,63 +259,21 @@ class ViewController: UIViewController {
         var result: Double = 0.0
         let optionalNum2 = num2 ?? num1
         
-        
-        // COMMENTS are attempts to implement PEMDAS handling
         switch operation {
             case "+": result = num1 + optionalNum2
-            //evaluate(num1, num2: optionalNum2, operation: +)
+            //doMath(num1, num2: optionalNum2, operation: +)
             case "-": result = optionalNum2 - num1
-            //evaluate(optionalNum2, num2: -num1, operation: +)
+            //doMath(optionalNum2, num2: -num1, operation: +)
             case "*": result = num1 * optionalNum2
-            //evaluateFirst(num1, num2: optionalNum2, operation: "*")
+            //doMath(num1, num2: optionalNum2, operation: "*")
             case "/": result = optionalNum2 / num1
-            //evaluateFirst(optionalNum2, num2: 1/num1, operation: "*")
+            //doMath(optionalNum2, num2: 1/num1, operation: "*")
             default: break
         }
         return result
         
     }
 
-    
-    
-//    @IBAction func evaluateFirst(sender: UIButton) {
-//        if let character = sender.currentTitle {
-//            if let index = find(arrayOfOperations, character) {
-//            let temporaryResult = doMath(arrayOfNumbers[index], num2: arrayOfNumbers[index+1], operation: character)
-//            arrayOfNumbers.replaceRange([index]...[index+1], with:[temporaryResult])
-//            arrayOfOperations.removeAtIndex(index: index)
-//            }
-//        }
-//
-//    }
-    
-//        let index = find(arrayOfOperations, "*")
-//
-////        var num1 = arrayOfNumbers[index]
-////        var num2 = arrayOfNumbers[index+1]
-//        
-//        for mathOperator in arrayOfOperations {
-//            
-//            switch mathOperator {
-//                case "*", "/": println("switch is working") //currentNumberValue = num1 * num2
-//                case "+", "-": println("blah") //addSubtr(Double, Double)
-//            default: break
-//            }
-//        }
-//            
-    
-//            if mathOperator == "*" || mathOperator == "/" {
-//                
-//                // if NOT all items in arrayOfOperations are ["*" or "/"]
-//                
-//                if let index = find(arrayOfOperations, "*") {
-//                    currentNumberValue = arrayOfNumbers[index] * arrayOfNumbers[index + 1]
-//                } else {
-//
-//                }
-//            }
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     let calculate = CalculatorClass()
     
+    var displayLabel = UILabel()
     var clearButton = UIButton()
     
     override func viewWillAppear(animated: Bool) {
@@ -30,7 +31,6 @@ class ViewController: UIViewController {
         
         
         // DEFINING CONTAINER FOR ALL KEYS
-        
         var keypadContainer = UIView()
         self.view.addSubview(keypadContainer)
         keypadContainer.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -47,8 +47,6 @@ class ViewController: UIViewController {
         
         
         // DEFINING LABEL FOR DISPLAYING THE RESULT
-        
-        var displayLabel = UILabel()
         self.view.addSubview(displayLabel)
         displayLabel.text = calculate.resultDisplay
         displayLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -100,14 +98,6 @@ class ViewController: UIViewController {
             buttonsAll.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             buttonsAll.userInteractionEnabled = true
             buttonsAll.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
-            
-            ///////////
-            //       //
-            //  STOP //
-            //       //
-            ///////////
-            
-            //  addTarget is NOT WORKING. WHY?????
         }
         
         clearButton = arrayOfButtons[0]
@@ -183,6 +173,7 @@ class ViewController: UIViewController {
     // change LABEL on CLEAR BUTTON
     func changeClear() {
         clearButton.currentTitle == "C"
+        
     }
     
 
@@ -192,9 +183,10 @@ class ViewController: UIViewController {
         if let buttonTitle = button.currentTitle {
             switch buttonTitle {
             case "AC": calculate.clearPressed(button)
-            case "=": calculate.evaluate()
+            case "=": calculate.evaluate(button)
             case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+":
                 calculate.appendDigits(button)
+                changeClear()
             case "±", "%": calculate.operateUnary(button)
             default: break
             }
