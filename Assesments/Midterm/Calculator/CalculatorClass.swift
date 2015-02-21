@@ -27,7 +27,6 @@ class CalculatorClass {
         set {
             resultDisplay = "\(newValue)"
             appending = false
-            println("current number = \(currentNumberValue)")
         }
     }
     
@@ -81,15 +80,16 @@ class CalculatorClass {
     
     //CLEAR button
     func clearPressed(sender: UIButton) {
-        resultDisplay = "0"
+        
+        currentNumberValue = 0
+        resultDisplay = "\(currentNumberValue)"
         
         if sender.currentTitle == "AC" {
-            equationString = ""
-            resultDisplay = "0"
             arrayOfNumbers = []
             arrayOfOperations = []
+            equationString = ""
         } else if sender.currentTitle == "C" {
-            resultDisplay = "0"
+            sender.setTitle("AC", forState: UIControlState.Normal)
         }
         
     }
@@ -140,22 +140,25 @@ class CalculatorClass {
                     
                     //(2B) CHECK if there are 2 numbers to operate on
                 } else if arrayOfNumbers.count == 2 {
+
+// I GIVE UP.
+//                    //(3A) CHECK if character is * OR /
+//                    if character == "*" || character == "/" {
+//                        var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
+//                        
+//                        //(4A) CHECK if previous operator is NOT * OR / -> need PEMDAS
+//                        if previousOperator == character {
+//                            evaluate(sender) // !!!!!!
+//                            //(4B) regular evaluate
+//                        } else {
+//                            processPEMDAS(sender) // !!!!!!!
+//                        }
+//                        //(3B) if not, regular evaluate
+//                    } else {
+//                        evaluate(sender) // !!!!!!!
+//                    }
                     
-                    //(3A) CHECK if character is * OR /
-                    if character == "*" || character == "/" {
-                        var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
-                        
-                        //(4A) CHECK if previous operator is NOT * OR / -> need PEMDAS
-                        if previousOperator != character {
-                            processPEMDAS(sender) // !!!!!!
-                            //(4B) regular evaluate
-                        } else if previousOperator == character {
-                            evaluate(sender) // !!!!!!!
-                        }
-                        //(3B) if not, regular evaluate
-                    } else {
-                        evaluate(sender) // !!!!!!!
-                    }
+                    evaluate(sender)
                 }
                 
                 //(1B) if EXTRA operators,
@@ -180,55 +183,60 @@ class CalculatorClass {
             var product = 0.0
             var previousOperator = arrayOfOperations[arrayOfOperations.count-1]
             
-            product = doMath(arrayOfNumbers.removeLast(), num2: arrayOfNumbers.removeLast(), operation: character)
-            arrayOfNumbers.append(product)
-            arrayOfOperations.removeAtIndex(arrayOfOperations.count-1)
-            evaluate(sender)
+            if arrayOfNumbers.count > arrayOfOperations.count {
+                product = doMath(arrayOfNumbers.removeLast(), num2: arrayOfNumbers.removeLast(), operation: character)
+                arrayOfNumbers.append(product)
+                arrayOfOperations.removeAtIndex(arrayOfOperations.count-1)
+                evaluate(sender)
+            }
+
         }
     }
+    
+    
+    func equalSign(sender: UIButton) {
+        println("current number = \(currentNumberValue)")
+        arrayOfNumbers.append(currentNumberValue)
+        evaluate(sender)
+    }
+    
     
     func evaluate(sender: UIButton) {
         
         let character = sender.currentTitle
         
-        if character == "=" {
-            println("current number = \(currentNumberValue)")
-            arrayOfNumbers.append(currentNumberValue)
-            evaluate(sender)
-        } else {
-            
-            println("arrayOfNumbers: \(arrayOfNumbers)")
-            println("arrayOfOperations: \(arrayOfOperations)")
-            println("equation: \(equationString)")
-            
-            
-            // 2nd number is OPTIONAL
-            var num2: Double?
-            if arrayOfNumbers.count >= 2 {
-                num2 = arrayOfNumbers[arrayOfNumbers.count-2]
-            }
-            
-            if arrayOfOperations.isEmpty == false {
-                
-                // CALLS doMath function
-                currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations[arrayOfOperations.count - 1])
-                
-                // updates ARRAY OF NUMBERS
-                arrayOfNumbers.removeLast()
-                if arrayOfNumbers.count >= 2{
-                    arrayOfNumbers.removeLast()
-                }
-                arrayOfNumbers.append(currentNumberValue)
-                //arrayOfNumbers.replaceRange(0...1, with: [currentNumberValue])
-                
-                // updates ARRAY OF OPERATORS
-                arrayOfOperations.removeLast()
-                
-            } else {
-                resultDisplay == resultDisplay
-            }
-            
+        println("arrayOfNumbers: \(arrayOfNumbers)")
+        println("arrayOfOperations: \(arrayOfOperations)")
+        println("equation: \(equationString)")
+
+        
+        // 2nd number is OPTIONAL
+        var num2: Double?
+        if arrayOfNumbers.count >= 2 {
+            num2 = arrayOfNumbers[arrayOfNumbers.count-2]
         }
+        
+        // CALLS doMath function
+        currentNumberValue = doMath(arrayOfNumbers[arrayOfNumbers.count - 1], num2: num2, operation: arrayOfOperations[arrayOfOperations.count - 1])
+        println("num1 = \(arrayOfNumbers[arrayOfNumbers.count - 1]), num2 = \(num2)")
+        println("result is \(currentNumberValue)")
+        
+        //UPDATE display
+        let cnv = currentNumberValue
+        resultDisplay = "\(cnv)"
+        
+        //UPDATE array of NUMBERS
+        if arrayOfNumbers.count < 2{
+            arrayOfNumbers.removeLast()
+        } else {
+            arrayOfNumbers.removeLast()
+            arrayOfNumbers.removeLast()
+        }
+        //arrayOfNumbers.append(currentNumberValue)
+        
+        
+        //UPDATE array of OPERATORS
+        arrayOfOperations.removeLast()
         
     }
     
@@ -241,8 +249,8 @@ class CalculatorClass {
         switch operation {
         case "+": result = num1 + optionalNum2
         case "-": result = optionalNum2 - num1
-        case "*": result = num1 * optionalNum2
-        case "/": result = optionalNum2 / num1
+        case "×": result = num1 * optionalNum2
+        case "÷": result = optionalNum2 / num1
         default: break
         }
         return result

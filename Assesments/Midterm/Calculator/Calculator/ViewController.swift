@@ -100,8 +100,6 @@ class ViewController: UIViewController {
             buttonsAll.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
         }
         
-        clearButton = arrayOfButtons[0]
-        
         for (index, buttonsAll) in enumerate(arrayOfButtons) {
             if index != 16 {
                 self.view.addConstraint(NSLayoutConstraint(
@@ -115,6 +113,7 @@ class ViewController: UIViewController {
         // AUTOLAYOUT for ALL KEYS
         
         // ZERO - unique size
+        clearButton = arrayOfButtons[0]
         self.view.addConstraint(NSLayoutConstraint(item: arrayOfButtons[16], attribute: .Height, relatedBy: .Equal, toItem: keySize, attribute: .Height, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: arrayOfButtons[16], attribute: .Width, relatedBy: .Equal, toItem: keySize, attribute: .Width, multiplier: 2.0, constant: 0.0))
         
@@ -172,22 +171,29 @@ class ViewController: UIViewController {
     
     // change LABEL on CLEAR BUTTON
     func changeClear() {
-        clearButton.currentTitle == "C"
+        clearButton.setTitle("C", forState: UIControlState.Normal)
         
     }
     
 
     // "BUTTON PRESSED"
     func buttonPressed(button: UIButton) {
-        println("button pressed")
         if let buttonTitle = button.currentTitle {
             switch buttonTitle {
-            case "AC": calculate.clearPressed(button)
-            case "=": calculate.evaluate(button)
-            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "÷", "×", "−", "+":
+            case "AC", "C":
+                calculate.clearPressed(button)
+                displayLabel.text = calculate.resultDisplay
+            case "=":
+                calculate.equalSign(button)
+                displayLabel.text = calculate.resultDisplay
+            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".":
                 calculate.appendDigits(button)
                 changeClear()
-            case "±", "%": calculate.operateUnary(button)
+                displayLabel.text = calculate.resultDisplay
+            case "÷", "×", "−", "+": calculate.operateBinary(button)
+                displayLabel.text = calculate.resultDisplay
+            case "±", "%":
+                calculate.operateUnary(button)
             default: break
             }
         }
