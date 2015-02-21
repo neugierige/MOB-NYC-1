@@ -26,6 +26,12 @@ class SixthViewController: ExerciseViewController, UITableViewDelegate, UITableV
         
     }
     
+    /* TODO:
+    The table view cells on this screen are blank.
+    
+    Add a label to each cell that is green and centered, and have its text say “Row {X}” (X is the row number of the cell). The tableview should rotate correctly. Use Autolayout.
+    */
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -33,15 +39,12 @@ class SixthViewController: ExerciseViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 15
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell?
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
         }
-        
-
-        
         
         greenLabel.backgroundColor = UIColor.greenColor()
         tableView.addSubview(greenLabel)
@@ -85,11 +88,6 @@ class SixthViewController: ExerciseViewController, UITableViewDelegate, UITableV
 //            multiplier: 1.0,
 //            constant: 0.0))
         
-        /* TODO:
-        The table view cells on this screen are blank.
-        
-        Add a label to each cell that is green and centered, and have its text say “Row {X}” (X is the row number of the cell). The tableview should rotate correctly. Use Autolayout.
-        */
         
         return cell!
     }
