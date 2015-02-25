@@ -10,9 +10,15 @@ import UIKit
 
 class ThirdViewController: UIViewController {
 
+    
+    @IBOutlet var textView3: UITextView!
+    
+    @IBAction func tappedNext(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setObject(textView3.text, forKey: "stringFromTextView")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        textView3.text = NSUserDefaults.standardUserDefaults().objectForKey("stringFromTextView") as? String ?? textView3.text
     }
 }

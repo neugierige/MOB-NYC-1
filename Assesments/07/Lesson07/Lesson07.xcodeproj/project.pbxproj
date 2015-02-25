@@ -18,6 +18,7 @@
 		5D1F7FB519DB2F130017441C /* FifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1F7FB419DB2F130017441C /* FifthViewController.swift */; };
 		5D1F7FB719DB2F1A0017441C /* SixthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1F7FB619DB2F1A0017441C /* SixthViewController.swift */; };
 		5D1F7FBA19DB36710017441C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D1F7FB919DB36710017441C /* Settings.bundle */; };
+		F9F1BDA51A9BBED000EED499 /* SecondVC_plist.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9F1BDA41A9BBED000EED499 /* SecondVC_plist.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		5D1F7FB619DB2F1A0017441C /* SixthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixthViewController.swift; sourceTree = "<group>"; };
 		5D1F7FB919DB36710017441C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F86271BE844E497982D7495F /* libPods-Lesson07.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lesson07.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9F1BDA41A9BBED000EED499 /* SecondVC_plist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecondVC_plist.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		5D1F7F8C19DB24CF0017441C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9F1BDA41A9BBED000EED499 /* SecondVC_plist.plist */,
 				5D1F7F8D19DB24CF0017441C /* Info.plist */,
 				5D1F7FB919DB36710017441C /* Settings.bundle */,
 			);
@@ -227,6 +230,7 @@
 			files = (
 				5D1F7F9419DB24CF0017441C /* Main.storyboard in Resources */,
 				5D1F7FBA19DB36710017441C /* Settings.bundle in Resources */,
+				F9F1BDA51A9BBED000EED499 /* SecondVC_plist.plist in Resources */,
 				5D1F7F9619DB24CF0017441C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
