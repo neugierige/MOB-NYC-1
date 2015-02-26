@@ -83,12 +83,12 @@
 			children = (
 				5D0FAA151A9BC3C3009DFC5E /* AppDelegate.swift */,
 				5D0FAA1A1A9BC3C3009DFC5E /* ViewController.swift */,
+				5D0FAA381A9BC44F009DFC5E /* Animal.swift */,
 				5D0FAA1C1A9BC3C3009DFC5E /* Main.storyboard */,
 				5D0FAA1F1A9BC3C3009DFC5E /* Images.xcassets */,
 				5D0FAA211A9BC3C3009DFC5E /* LaunchScreen.xib */,
 				5D0FAA171A9BC3C3009DFC5E /* CoreData.xcdatamodeld */,
 				5D0FAA131A9BC3C3009DFC5E /* Supporting Files */,
-				5D0FAA381A9BC44F009DFC5E /* Animal.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -413,6 +413,7 @@
 				5D0FAA341A9BC3C3009DFC5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D0FAA351A9BC3C3009DFC5E /* Build configuration list for PBXNativeTarget "CoreDataTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +422,7 @@
 				5D0FAA371A9BC3C3009DFC5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

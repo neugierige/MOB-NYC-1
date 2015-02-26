@@ -13,6 +13,7 @@
 		5D0FAA501A9BF636009DFC5E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D0FAA4F1A9BF636009DFC5E /* Images.xcassets */; };
 		5D0FAA531A9BF636009DFC5E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0FAA511A9BF636009DFC5E /* LaunchScreen.xib */; };
 		5D0FAA5F1A9BF636009DFC5E /* TodoPlistsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0FAA5E1A9BF636009DFC5E /* TodoPlistsTests.swift */; };
+		F9332EFB1A9BFD9900505F4C /* ToDoList.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9332EFA1A9BFD9900505F4C /* ToDoList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		5D0FAA581A9BF636009DFC5E /* TodoPlistsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoPlistsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D0FAA5D1A9BF636009DFC5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D0FAA5E1A9BF636009DFC5E /* TodoPlistsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPlistsTests.swift; sourceTree = "<group>"; };
+		F9332EFA1A9BFD9900505F4C /* ToDoList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToDoList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		5D0FAA461A9BF636009DFC5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9332EFA1A9BFD9900505F4C /* ToDoList.plist */,
 				5D0FAA471A9BF636009DFC5E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -194,6 +197,7 @@
 			files = (
 				5D0FAA4E1A9BF636009DFC5E /* Main.storyboard in Resources */,
 				5D0FAA531A9BF636009DFC5E /* LaunchScreen.xib in Resources */,
+				F9332EFB1A9BFD9900505F4C /* ToDoList.plist in Resources */,
 				5D0FAA501A9BF636009DFC5E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +409,7 @@
 				5D0FAA641A9BF636009DFC5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D0FAA651A9BF636009DFC5E /* Build configuration list for PBXNativeTarget "TodoPlistsTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				5D0FAA671A9BF636009DFC5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

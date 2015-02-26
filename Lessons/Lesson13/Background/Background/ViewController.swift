@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var backgroundSwitch: UISwitch!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +21,9 @@ class ViewController: UIViewController {
         self.backgroundSwitch.addTarget(self, action: "didChangeSwitch", forControlEvents: UIControlEvents.ValueChanged)
         
         self.backgroundSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("switchIsOn")
+        
         didChangeSwitch()
+        
         if let path = NSBundle.mainBundle().pathForResource("Athletes", ofType: "plist") {
             var array = NSArray(contentsOfFile: path)
             println(array)
