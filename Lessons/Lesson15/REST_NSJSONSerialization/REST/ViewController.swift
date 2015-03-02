@@ -17,7 +17,7 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     }
     
     override func viewDidAppear(animated: Bool) {
-        if let url = NSURL(string: "http://www.reddit.com/.json") {
+        if let url = NSURL(string: "http://mashable.com/stories.json") {
             let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
                 var jsonError: NSError?
                 if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &jsonError) as? NSDictionary {
@@ -40,10 +40,8 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let json = self.json {
-            if let data = json["data"] as? NSDictionary {
-                if let children = data["children"] as? NSArray {
-                    return children.count
-                }
+            if let newItem = json["new"] as? NSArray {
+                return newItem.count
             }
         }
         return 0
@@ -52,20 +50,13 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
         if cell == nil  {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "cell")
         }
         
         if let json = self.json {
-            if let data = json["data"] as? NSDictionary {
-                if let children = data["children"] as? NSArray {
-                    if let child = children[indexPath.row] as? NSDictionary {
-                        if let data = child["data"] as? NSDictionary {
-                            if let title = data["title"] as? NSString {
-                                cell.textLabel?.text = title
-                            }
-                        }
-                    }
-                }
+            if let newItem = json["new"] as? NSArray {
+                cell.textLabel?.text = newItem[indexPath.row]["title"] as? String
+                cell.detailTextLabel?.text = newItem[indexPath.row]["author"] as? String
             }
         }
         
@@ -74,15 +65,11 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let json = self.json {
-            if let data = json["data"] as? NSDictionary {
-                if let children = data["children"] as? NSArray {
-                    if let child = children[indexPath.row] as? NSDictionary {
-                        if let data = child["data"] as? NSDictionary {
-                            if let permalink = data["permalink"] as? NSString {
-                                if let url = NSURL(string: "http://reddit.com" + permalink) {
-                                    performSegueWithIdentifier("web", sender: NSURLRequest(URL: url))
-                                }
-                            }
+            if let newItem = json["new"] as? NSArray {
+                if let story = newItem[indexPath.row] as? NSDictionary {
+                    if let link = story["link"] as? NSString {
+                            if let url = NSURL(string: link) {
+                                performSegueWithIdentifier("web", sender: NSURLRequest(URL: url))
                         }
                     }
                 }
@@ -98,3 +85,18 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     }
 }
 
+/*
+if let json = self.json {
+    if let newItem = json["new"] as? NSArray {
+        if let title = newItem[indexPath.row] as? NSDictionary {
+            if let story = title[indexPath.row] as? NSDictionary {
+                if let link = story["link"] as? NSString {
+                    if let url = NSURL(string: link) {
+                        performSegueWithIdentifier("web", sender: NSURLRequest(URL: url))
+                    }
+                }
+            }
+        }
+    }
+}
+*/
