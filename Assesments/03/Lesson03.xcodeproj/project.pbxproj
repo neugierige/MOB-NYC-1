@@ -85,13 +85,13 @@
 		5DCED98519D8DC9B00DE1DC2 /* Lesson03 */ = {
 			isa = PBXGroup;
 			children = (
-				5DCED9A819D8DF0800DE1DC2 /* ArrayTableViewController.swift */,
-				5DCED9AA19D8DF4E00DE1DC2 /* Animal.swift */,
-				5DCED98819D8DC9B00DE1DC2 /* AppDelegate.swift */,
-				5DCED98A19D8DC9B00DE1DC2 /* ViewController.swift */,
 				5DCED98C19D8DC9B00DE1DC2 /* Main.storyboard */,
+				5DCED98A19D8DC9B00DE1DC2 /* ViewController.swift */,
+				5DCED9AA19D8DF4E00DE1DC2 /* Animal.swift */,
 				F927BADE1A6ACDDD0040AA27 /* AnimalSubclass.swift */,
+				5DCED9A819D8DF0800DE1DC2 /* ArrayTableViewController.swift */,
 				F927BADC1A6AC9440040AA27 /* DismissViewController.swift */,
+				5DCED98819D8DC9B00DE1DC2 /* AppDelegate.swift */,
 				5DCED98F19D8DC9B00DE1DC2 /* Images.xcassets */,
 				5DCED98619D8DC9B00DE1DC2 /* Supporting Files */,
 			);

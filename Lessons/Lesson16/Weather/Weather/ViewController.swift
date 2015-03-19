@@ -17,9 +17,19 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        Weather.retrieveWeather { (weather) -> Void in
+        
+        func completion(weather: Weather) {
             self.label.text = weather.friendlyWeather
         }
+        Weather.retrieveWeather(completion)
+        
+//        Weather.retrieveWeather { (weather) -> Void in
+//            self.label.text = weather.friendlyWeather
+//        }
+        
+        
     }
+
+    
 }
 

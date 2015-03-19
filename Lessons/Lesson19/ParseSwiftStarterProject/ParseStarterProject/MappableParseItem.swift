@@ -1,19 +1,23 @@
 //
-//  MapPlace.swift
+//  MappableParseItem.swift
 //  ParseStarterProject
 //
-//  Created by Rudd Taylor on 3/11/15.
+//  Created by Luyuan Xing on 3/16/15.
 //  Copyright (c) 2015 Parse. All rights reserved.
 //
 
 import Foundation
 import MapKit
 
-class MapPlace: NSObject, MKAnnotation {
+class MappableParseItem: NSObject, MKAnnotation {
+    
     var title: String?
+    
     var coordinate: CLLocationCoordinate2D
     
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
+        super.init()
     }
+    
 }

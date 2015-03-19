@@ -79,13 +79,13 @@
 		5D9135341AA540550035AB5C /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				5D9135371AA540550035AB5C /* AppDelegate.swift */,
 				5D9135391AA540550035AB5C /* ViewController.swift */,
+				5DD1505A1AA545B500A56664 /* Weather.swift */,
+				5D9135371AA540550035AB5C /* AppDelegate.swift */,
 				5D91353B1AA540550035AB5C /* Main.storyboard */,
 				5D91353E1AA540550035AB5C /* Images.xcassets */,
 				5D9135401AA540550035AB5C /* LaunchScreen.xib */,
 				5D9135351AA540550035AB5C /* Supporting Files */,
-				5DD1505A1AA545B500A56664 /* Weather.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
