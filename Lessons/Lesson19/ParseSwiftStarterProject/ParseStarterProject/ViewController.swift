@@ -88,6 +88,9 @@ class ViewController: UIViewController, UIAlertViewDelegate, MKMapViewDelegate {
                 parseItem.saveInBackground()
                 //parseItem.saveInBackground({(save, error) -> Void in 
                 //self.mapItems.append(parseItem)})
+                var mapItem = MapPlace(coordinate: mapItem.placemark.coordinate)
+                mapItem.title = name
+                self.mapItems.append(mapItem)
             }
         }
     }
