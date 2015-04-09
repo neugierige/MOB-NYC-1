@@ -20,7 +20,6 @@ class ViewController: UIViewController {
         
         
         // DEFINE SIZE OF A SINGLE KEY UNIT
-        
         var keySize = UIView()
         view.addSubview(keySize)
         keySize.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -48,24 +47,17 @@ class ViewController: UIViewController {
         
         // DEFINING LABEL FOR DISPLAYING THE RESULT
         self.view.addSubview(displayLabel)
-        displayLabel.text = calculate.resultDisplay
         displayLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        displayLabel.backgroundColor = UIColor.blackColor()
-        displayLabel.textColor = UIColor.whiteColor()
+        //displayLabel.backgroundColor = UIColor.blackColor()
+        displayLabel.text = calculate.resultDisplay
+        displayLabel.textColor = UIColor.orangeColor()
         displayLabel.textAlignment = NSTextAlignment.Right
-        
-        ////////////
-        //        //
-        //  STOP  //
-        //        //
-        ////////////
-        //how to make the text alignment offset (from the right edge) by a specific amount? i.e. 5.0
         
         displayLabel.font = displayLabel.font.fontWithSize(30)
         self.view.addConstraint(NSLayoutConstraint(
-            item: displayLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
+            item: displayLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 20.0))
         self.view.addConstraint(NSLayoutConstraint(
-            item: displayLabel, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
+            item: displayLabel, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0))
         self.view.addConstraint(NSLayoutConstraint(
             item: displayLabel, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(
@@ -78,7 +70,6 @@ class ViewController: UIViewController {
         
         
         //SET UP FOR BUTTONS
-        
         var buttonLabels: [String] = [
             "AC", "±", "%", "÷",  // 0,  1,   2, 3
             "7", "8", "9", "×",   // 4,  5,   6, 7
@@ -153,12 +144,10 @@ class ViewController: UIViewController {
             self.view.addConstraint(NSLayoutConstraint(item: secondColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[12], attribute: .Right, multiplier: 1.0, constant: 0.0))
         }
         
-        
         //3rd COLUMN OF BUTTONS
         for thirdColumn in [arrayOfButtons[2], arrayOfButtons[6], arrayOfButtons[10], arrayOfButtons[14], arrayOfButtons[17]] {
             self.view.addConstraint(NSLayoutConstraint(item: thirdColumn, attribute: .Left, relatedBy: .Equal, toItem: arrayOfButtons[16], attribute: .Right, multiplier: 1.0, constant: 0.0))
         }
-
         
         //4th COLUMN OF BUTTONS
         for fourthColumn in [arrayOfButtons[3], arrayOfButtons[7], arrayOfButtons[11], arrayOfButtons[15], arrayOfButtons[18]] {
@@ -172,7 +161,6 @@ class ViewController: UIViewController {
     // change LABEL on CLEAR BUTTON
     func changeClear() {
         clearButton.setTitle("C", forState: UIControlState.Normal)
-        
     }
     
 
@@ -194,6 +182,7 @@ class ViewController: UIViewController {
                 displayLabel.text = calculate.resultDisplay
             case "±", "%":
                 calculate.operateUnary(button)
+                displayLabel.text = calculate.resultDisplay
             default: break
             }
         }

@@ -81,8 +81,8 @@
 		F9F053E11A89905500FCBE3D /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				F9F054061A89958F00FCBE3D /* CalculatorClass.swift */,
 				F9F053E61A89905500FCBE3D /* ViewController.swift */,
+				F9F054061A89958F00FCBE3D /* CalculatorClass.swift */,
 				F94ADEB21A8C3DD9007C6519 /* BorderedButton.swift */,
 				F9F053E81A89905500FCBE3D /* Main.storyboard */,
 				F9F053E41A89905500FCBE3D /* AppDelegate.swift */,

@@ -102,10 +102,12 @@ class CalculatorClass {
         if character == "%" {
             currentNumberValue = currentNumberValue * 0.01
             arrayOfNumbers.append(currentNumberValue)
+            resultDisplay = "\(currentNumberValue)"
             equationString = equationString + "\(currentNumberValue)"
         } else if character == "±" {
             currentNumberValue = currentNumberValue * -1
             arrayOfNumbers.append(currentNumberValue)
+            resultDisplay = "\(currentNumberValue)"
             equationString = equationString + "\(currentNumberValue)"
         } else {
         }
